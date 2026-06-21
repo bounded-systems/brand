@@ -111,11 +111,12 @@ Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 The square avatar center-crops badly on wide (~1.91:1) social/link cards and
 clips the door. Use the dedicated wide lockup instead:
 
-- Set **`lockup/lockup-forest.svg`** as the repo's social preview
-  (Settings → Social preview). `lockup-light.svg` is for light/photographic contexts.
+- Set **`lockup/lockup-forest-1200.png`** as the repo's social preview
+  (Settings → Social preview). `lockup-light-*` is for light/photographic contexts.
 - 1200×630 (OG), mark + wordmark + slug + tagline, with safe margins.
-- The lockups are SVG with live text. To rasterize to PNG (with the brand fonts
-  installed), e.g. `rsvg-convert -o lockup-forest-1200.png lockup/lockup-forest.svg`.
+- SVG masters carry live text; the `*-1200.png` rasters (Space Grotesk + IBM Plex
+  Mono baked in) are what social/link cards should point at — most platforms
+  (Slack, X, iMessage) won't render an SVG OG image.
 
 [Space Grotesk]: https://fonts.google.com/specimen/Space+Grotesk
 [IBM Plex Mono]: https://fonts.google.com/specimen/IBM+Plex+Mono
