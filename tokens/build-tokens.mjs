@@ -23,11 +23,12 @@ function genCss(t) {
   L.push("/* AUTO-GENERATED from tokens.json by build-tokens.mjs — do not edit by hand. */");
   L.push(":root {");
   L.push("  /* color */");
-  for (const k in t.color) L.push(`  --bs-color-${k}: ${t.color[k].$value};`);
+  for (const k in t.color) L.push(`  --bs-color-${k}: ${resolveRef(t.color[k].$value)};`);
   L.push("  /* font family */");
   for (const k in t.font) L.push(`  --bs-font-${k}: ${fam(t.font[k].$value)};`);
   L.push("  /* size & radius */");
   for (const k in t.size) L.push(`  --bs-${k}: ${t.size[k].$value};`);
+  for (const k in t.radius) L.push(`  --bs-${k}: ${t.radius[k].$value};`);
   L.push("}");
   L.push("");
   L.push("/* Text styles — composite recipes built from the tokens above. */");

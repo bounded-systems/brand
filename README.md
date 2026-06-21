@@ -21,7 +21,12 @@ brand/
 │   ├── avatar-forest.svg  ← recommended
 │   ├── avatar-light.svg
 │   └── avatar-{forest,light}-{200,280,420,460,1024}.png
-└── favicon-32.png
+├── lockup/                ← wide link-card lockup (OG 1.91:1, 1200×630)
+│   ├── lockup-forest.svg  ← repo social preview
+│   └── lockup-light.svg
+├── favicon-32.png
+├── style-dictionary.config.mjs  ← native / Figma outputs → dist/ (gitignored)
+└── package.json           ← build:css · check · build:sd
 ```
 
 ## Tokens
@@ -63,8 +68,17 @@ h1        { color: var(--bs-color-ink); }
 ```
 
 **Anything that can't read CSS** (native iOS/Android, email, Figma, print) reads
-`tokens.json` directly, or generate a platform output from it (e.g. Style
-Dictionary). JSON is the source; CSS is one artifact.
+`tokens.json` directly, or builds a platform output from it via Style Dictionary:
+
+```bash
+npm install
+npm run build:sd   # → dist/{tokens.scss,tokens.js,tokens.flat.json,Tokens.swift,tokens.xml}
+```
+
+`tokens.css` stays the curated **web** artifact (it carries the composite
+`.bs-text-*` classes); Style Dictionary covers everything else. `dist/` is
+gitignored — it's generated, never committed. JSON is the source; every CSS,
+SCSS, JS, Swift, and XML file is a derived artifact.
 
 Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 
@@ -74,10 +88,13 @@ Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 | --- | --- | --- |
 | `forest` | `#0C5A42` | primary fill, mark on light |
 | `forest-deep` | `#073D2C` | pressed / deep |
-| `paper` | `#EDEAE1` | app background |
+| `paper` | `#EDEAE1` | app background, warm |
+| `card` | `#FFFFFF` | card surface (aliases `white`) |
 | `card-alt` | `#F4F1EA` | light avatar fill |
 | `ink` | `#16221C` | primary text |
 | `ink-soft` | `#5C6B63` | secondary text |
+| `ink-mono` | `#6E7C73` | mono label / slug text |
+| `line` | `#E4E0D4` | hairline borders |
 | `white` | `#FFFFFF` | mark on forest |
 
 ## Avatar usage
@@ -89,8 +106,16 @@ Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 - Don't recolor the mark, rotate it, add effects, or close the door gap.
 - Below 20px, prefer `favicon-32.png`.
 
-> ⚠️ Known gap: wide social/link cards (~1.91:1) center-crop the square and clip
-> the door. A dedicated wide lockup (mark + wordmark, safe margins) is TODO.
+## Link cards / social preview
+
+The square avatar center-crops badly on wide (~1.91:1) social/link cards and
+clips the door. Use the dedicated wide lockup instead:
+
+- Set **`lockup/lockup-forest.svg`** as the repo's social preview
+  (Settings → Social preview). `lockup-light.svg` is for light/photographic contexts.
+- 1200×630 (OG), mark + wordmark + slug + tagline, with safe margins.
+- The lockups are SVG with live text. To rasterize to PNG (with the brand fonts
+  installed), e.g. `rsvg-convert -o lockup-forest-1200.png lockup/lockup-forest.svg`.
 
 [Space Grotesk]: https://fonts.google.com/specimen/Space+Grotesk
 [IBM Plex Mono]: https://fonts.google.com/specimen/IBM+Plex+Mono
