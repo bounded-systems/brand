@@ -13,6 +13,9 @@ brand/
 │   ├── tokens.json        ← SOURCE OF TRUTH (W3C design tokens)
 │   ├── tokens.css         ← generated CSS variables + text styles (do not hand-edit)
 │   └── build-tokens.mjs   ← generator; `--check` fails CI on drift
+├── css/                   ← ready-to-link stylesheets for web consumers
+│   ├── fonts.css          ← @import Space Grotesk + IBM Plex Mono (Google Fonts)
+│   └── base.css           ← resets + element defaults on the tokens
 ├── mark/                  ← logo only, transparent
 │   ├── mark-white.svg     ← on forest / dark
 │   ├── mark-forest.svg    ← on light
