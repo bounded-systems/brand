@@ -14,7 +14,8 @@ brand/
 │   ├── tokens.css         ← generated CSS variables + text styles (do not hand-edit)
 │   └── build-tokens.mjs   ← generator; `--check` fails CI on drift
 ├── css/                   ← ready-to-link stylesheets for web consumers
-│   ├── fonts.css          ← @import Space Grotesk + IBM Plex Mono (Google Fonts)
+│   ├── fonts.css          ← @font-face Space Grotesk + IBM Plex Mono (self-hosted)
+│   ├── fonts/             ← the woff2 files (OFL, latin subset) — no external CDN
 │   └── base.css           ← resets + element defaults on the tokens
 ├── mark/                  ← logo only, transparent
 │   ├── mark-white.svg     ← on forest / dark
