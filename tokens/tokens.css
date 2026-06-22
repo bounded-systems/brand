@@ -11,6 +11,12 @@
   --bs-color-ink-mono: #6E7C73;
   --bs-color-line: #E4E0D4;
   --bs-color-white: #FFFFFF;
+  --bs-color-forest-tint: #E2EBE6;
+  --bs-color-forest-soft: #D2E0D8;
+  --bs-color-clay: #A6432F;
+  --bs-color-clay-tint: #F2DED8;
+  --bs-color-amber: #B5762A;
+  --bs-color-amber-tint: #F3E8D6;
   /* font family */
   --bs-font-display: "Space Grotesk", sans-serif;
   --bs-font-mono: "IBM Plex Mono", monospace;
