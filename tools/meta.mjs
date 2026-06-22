@@ -19,6 +19,9 @@ const JSON_OUT = args.includes("--json");
 const dirs = args.filter((a) => !a.startsWith("--"));
 
 const REQUIRED = new Set(["lang", "charset", "viewport", "title", "description", "og:title", "og:description", "og:image", "h1"]);
+// 404 / error pages need only base meta — not social cards or structured data.
+const BASE_REQUIRED = new Set(["lang", "charset", "viewport", "title"]);
+const requiredFor = (file) => (/40[0-9]\.html?$/.test(file) ? BASE_REQUIRED : REQUIRED);
 
 const has = (re, s) => re.test(s);
 const cap = (re, s) => (s.match(re) || [, null])[1];
@@ -87,7 +90,8 @@ if (JSON_OUT) {
     console.log(`\n  ${s.dir}   llms.txt ${s.llms ? "✓" : "✗ (add /llms.txt)"}`);
     for (const p of s.pages) {
       const miss = Object.entries(p.checks).filter(([, v]) => !v).map(([k]) => k);
-      const reqMiss = miss.filter((k) => REQUIRED.has(k));
+      const req = requiredFor(p.file);
+      const reqMiss = miss.filter((k) => req.has(k));
       const n = Object.keys(p.checks).length, ok = n - miss.length;
       console.log(`     ${reqMiss.length ? "✗" : "✓"} ${p.file}  ${ok}/${n}` + (miss.length ? `  missing: ${miss.join(", ")}` : ""));
       failures += reqMiss.length;

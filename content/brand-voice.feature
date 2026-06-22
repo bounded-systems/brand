@@ -3,7 +3,6 @@ Feature: Brand voice
   (the content tool checks both directions). @tags scope a scenario to surface types;
   a surface claims tags in its content/surface.json. Untagged = applies everywhere.
 
-  @all
   Scenario: The org name is exact
     Then surfaces present the name "Bounded Systems"
 
