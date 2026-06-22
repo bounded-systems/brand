@@ -22,6 +22,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const brandRoot = join(here, "..");
 const args = process.argv.slice(2);
 const CHECK = args.includes("--check");
+const COLORS = args.includes("--colors"); // gate only raw colours (layout px is allowed to be literal)
 const JSON_OUT = args.includes("--json");
 const compIdx = args.indexOf("--comp");
 const compFile = compIdx !== -1 ? args[compIdx + 1] : null;
@@ -178,8 +179,10 @@ if (JSON_OUT) {
   console.log("");
 }
 
-const failing = results.filter((r) => r.violations.length > 0);
+const gated = (r) => (COLORS ? r.violations.filter((v) => v.value.startsWith("#")) : r.violations);
+const failing = results.filter((r) => gated(r).length > 0);
 if (CHECK && failing.length) {
-  console.error(`✗ usage gate: ${failing.reduce((n, r) => n + r.violations.length, 0)} hardcoded value(s) that should be tokens`);
+  const n = failing.reduce((s, r) => s + gated(r).length, 0);
+  console.error(`✗ ${COLORS ? "colour " : ""}usage gate: ${n} hardcoded ${COLORS ? "colour" : "value"}(s) that should be tokens`);
   process.exit(1);
 }
