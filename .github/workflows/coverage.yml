@@ -24,3 +24,5 @@ jobs:
         run: node tools/coverage.mjs --check css
       - name: Content tokens — schema valid + every scenario backed by a token
         run: node tools/content.mjs --check
+      - name: Accessibility — WCAG AA contrast on token pairs
+        run: node tools/a11y.mjs --check

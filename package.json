@@ -13,7 +13,9 @@
     "coverage:check": "node tools/coverage.mjs --check css",
     "content": "node tools/content.mjs",
     "content:check": "node tools/content.mjs --check",
-    "meta": "node tools/meta.mjs"
+    "meta": "node tools/meta.mjs",
+    "a11y": "node tools/a11y.mjs",
+    "a11y:check": "node tools/a11y.mjs --check"
   },
   "devDependencies": {
     "style-dictionary": "^4.3.0"
