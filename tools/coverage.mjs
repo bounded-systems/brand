@@ -83,8 +83,9 @@ function stripVarValues(line) {
 async function scanSurface(dir) {
   const files = await filesUnder(dir);
   const violations = [];
+  const localTokens = []; // custom-property DEFINITIONS — a token layer, not a bypass
   const usedVars = new Set();
-  let varHits = 0, rawHits = 0;
+  let varHits = 0;
   let text = "";
   for (const f of files) {
     const src = await readFile(f, "utf8");
@@ -96,18 +97,19 @@ async function scanSurface(dir) {
       const noVars = stripVarValues(raw);
       // SVGs legitimately carry hex fills; gate CSS/HTML styling only.
       const isSvg = f.endsWith(".svg");
+      // A custom-property definition (`--x: #hex`) is a local token layer, not a raw
+      // bypass — record it (aliasable if it equals a brand token) instead of flagging.
+      const isDef = /^\s*--[\w-]+\s*:/.test(raw);
       for (const m of noVars.matchAll(HEX)) {
-        rawHits++;
         if (isSvg) continue;
         const hex = m[0].toLowerCase();
-        const tok = valueToVar.get(hex);
-        violations.push({ file: relative(process.cwd(), f), line: i + 1, value: m[0], suggest: tok || (tokenHexes.has(hex) ? null : "(not in palette)") });
+        if (isDef) { localTokens.push({ value: m[0], aliasable: valueToVar.get(hex) || null }); continue; }
+        violations.push({ file: relative(process.cwd(), f), line: i + 1, value: m[0], suggest: valueToVar.get(hex) || (tokenHexes.has(hex) ? null : "(not in palette)") });
       }
       if (!isSvg) {
         for (const m of noVars.matchAll(PX)) {
-          rawHits++;
           const tok = valueToVar.get(m[0].toLowerCase());
-          // only flag px that has a token equivalent (layout px like 1px borders are fine)
+          if (isDef) { if (tok) localTokens.push({ value: m[0], aliasable: tok }); continue; }
           if (tok) violations.push({ file: relative(process.cwd(), f), line: i + 1, value: m[0], suggest: tok });
         }
       }
@@ -116,7 +118,7 @@ async function scanSurface(dir) {
   const total = varHits + violations.length;
   const coverage = total === 0 ? 100 : Math.round((varHits / total) * 100);
   const components = COMPONENTS.filter((c) => c.test(text)).map((c) => c.name);
-  return { dir, files: files.length, coverage, varHits, violations, usedVars, components };
+  return { dir, files: files.length, coverage, varHits, violations, localTokens, usedVars, components };
 }
 
 // ---- run -----------------------------------------------------------------------
@@ -146,10 +148,14 @@ if (JSON_OUT) {
 
   console.log("  1. USAGE GATE — token coverage per surface");
   for (const r of results) {
-    console.log(`     ${bar(r.coverage)} ${String(r.coverage).padStart(3)}%  ${basename(r.dir)}  (${r.varHits} token refs, ${r.violations.length} raw)`);
+    const aliasable = r.localTokens.filter((t) => t.aliasable).length;
+    const local = r.localTokens.length ? `, ${r.localTokens.length} local token${r.localTokens.length > 1 ? "s" : ""}${aliasable ? ` (${aliasable} alias brand)` : ""}` : "";
+    console.log(`     ${bar(r.coverage)} ${String(r.coverage).padStart(3)}%  ${basename(r.dir)}  (${r.varHits} token refs, ${r.violations.length} raw${local})`);
     for (const v of r.violations.slice(0, 8))
       console.log(`        ✗ ${v.file}:${v.line}  ${v.value}  →  ${v.suggest ? "use var(" + v.suggest + ")" : "(not in palette)"}`);
     if (r.violations.length > 8) console.log(`        … +${r.violations.length - 8} more`);
+    for (const t of r.localTokens.filter((t) => t.aliasable).slice(0, 4))
+      console.log(`        ↪ local ${t.value} aliases ${t.aliasable} — consider var(${t.aliasable})`);
   }
 
   console.log("\n  2. UNUSED-TOKEN AUDIT");
