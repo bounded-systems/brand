@@ -10,7 +10,9 @@
     "build:sd": "style-dictionary build --config style-dictionary.config.mjs",
     "build": "npm run build:css && npm run build:sd",
     "coverage": "node tools/coverage.mjs css design",
-    "coverage:check": "node tools/coverage.mjs --check css"
+    "coverage:check": "node tools/coverage.mjs --check css",
+    "content": "node tools/content.mjs",
+    "content:check": "node tools/content.mjs --check"
   },
   "devDependencies": {
     "style-dictionary": "^4.3.0"

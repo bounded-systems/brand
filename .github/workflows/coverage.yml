@@ -22,3 +22,5 @@ jobs:
         run: node tools/coverage.mjs css design
       - name: Gate — design system CSS is fully tokenized
         run: node tools/coverage.mjs --check css
+      - name: Content tokens — schema valid + every scenario backed by a token
+        run: node tools/content.mjs --check
