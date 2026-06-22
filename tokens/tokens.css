@@ -28,6 +28,16 @@
   --bs-text-label: 11px;
   --bs-radius-lg: 18px;
   --bs-radius-md: 12px;
+  /* grade — base + derived bg/fg tints (deterministic) */
+  --bs-grade-enforced: #3FB984;
+  --bs-grade-enforced-bg: #E2F5ED;
+  --bs-grade-enforced-fg: #28664B;
+  --bs-grade-partial: #C8902F;
+  --bs-grade-partial-bg: #F7EEE0;
+  --bs-grade-partial-fg: #665425;
+  --bs-grade-aspirational: #7E8C83;
+  --bs-grade-aspirational-bg: #ECEEEC;
+  --bs-grade-aspirational-fg: #45524A;
 }
 
 /* Text styles — composite recipes built from the tokens above. */

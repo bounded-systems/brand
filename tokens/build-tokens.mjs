@@ -10,6 +10,11 @@ const here = dirname(fileURLToPath(import.meta.url));
 const tokens = JSON.parse(readFileSync(join(here, "tokens.json"), "utf8"));
 const cssPath = join(here, "tokens.css");
 
+// Deterministic colour math for derived tints (pure → reproducible output).
+const hexToRgb = (h) => { h = h.replace("#", ""); if (h.length === 3) h = [...h].map((c) => c + c).join(""); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+const rgbToHex = (r) => "#" + r.map((n) => Math.round(n).toString(16).padStart(2, "0")).join("").toUpperCase();
+const mix = (a, b, t) => { const A = hexToRgb(a), B = hexToRgb(b); return rgbToHex(A.map((x, i) => x * (1 - t) + B[i] * t)); };
+
 const fam = (v) => v.map((f) => (/\s/.test(f) ? `"${f}"` : f)).join(", ");
 const resolveRef = (s) =>
   String(s).replace(/\{([^}]+)\}/g, (_, p) => {
@@ -29,6 +34,17 @@ function genCss(t) {
   L.push("  /* size & radius */");
   for (const k in t.size) L.push(`  --bs-${k}: ${t.size[k].$value};`);
   for (const k in t.radius) L.push(`  --bs-${k}: ${t.radius[k].$value};`);
+  if (t.grade) {
+    L.push("  /* grade — base + derived bg/fg tints (deterministic) */");
+    const ink = t.color.ink.$value, white = t.color.white.$value;
+    for (const k in t.grade) {
+      if (k.startsWith("$")) continue;
+      const base = t.grade[k].$value;
+      L.push(`  --bs-grade-${k}: ${base};`);
+      L.push(`  --bs-grade-${k}-bg: ${mix(base, white, 0.85)};`);
+      L.push(`  --bs-grade-${k}-fg: ${mix(base, ink, 0.55)};`);
+    }
+  }
   L.push("}");
   L.push("");
   L.push("/* Text styles — composite recipes built from the tokens above. */");
