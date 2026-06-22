@@ -77,8 +77,10 @@ const PX = /(?<![\w-])\d+(?:\.\d+)?px\b/g;
 const VAR = /var\(\s*(--bs-[a-z0-9-]+)\s*\)/g;
 
 function stripVarValues(line) {
-  // don't count the var(--x) name itself as a raw value
-  return line.replace(VAR, "");
+  // don't count the var(--x) name itself as a raw value; and HTML meta attribute
+  // values (e.g. <meta name="theme-color" content="#0C5A42">) can't use var() —
+  // they're config, not styling, so don't flag them as hardcoded.
+  return line.replace(VAR, "").replace(/content="[^"]*"/g, "");
 }
 
 async function scanSurface(dir) {
