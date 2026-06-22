@@ -32,12 +32,18 @@
   --bs-grade-enforced: #3FB984;
   --bs-grade-enforced-bg: #E2F5ED;
   --bs-grade-enforced-fg: #28664B;
+  --bs-grade-enforced-on-dark: #9FDCC2;
+  --bs-grade-enforced-on-dark-bg: color-mix(in srgb, #3FB984 14%, transparent);
   --bs-grade-partial: #C8902F;
   --bs-grade-partial-bg: #F7EEE0;
   --bs-grade-partial-fg: #665425;
+  --bs-grade-partial-on-dark: #E4C897;
+  --bs-grade-partial-on-dark-bg: color-mix(in srgb, #C8902F 14%, transparent);
   --bs-grade-aspirational: #7E8C83;
   --bs-grade-aspirational-bg: #ECEEEC;
   --bs-grade-aspirational-fg: #45524A;
+  --bs-grade-aspirational-on-dark: #BFC6C1;
+  --bs-grade-aspirational-on-dark-bg: color-mix(in srgb, #7E8C83 14%, transparent);
 }
 
 /* Text styles — composite recipes built from the tokens above. */

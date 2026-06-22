@@ -43,6 +43,8 @@ function genCss(t) {
       L.push(`  --bs-grade-${k}: ${base};`);
       L.push(`  --bs-grade-${k}-bg: ${mix(base, white, 0.85)};`);
       L.push(`  --bs-grade-${k}-fg: ${mix(base, ink, 0.55)};`);
+      L.push(`  --bs-grade-${k}-on-dark: ${mix(base, white, 0.5)};`);
+      L.push(`  --bs-grade-${k}-on-dark-bg: color-mix(in srgb, ${base} 14%, transparent);`);
     }
   }
   L.push("}");
