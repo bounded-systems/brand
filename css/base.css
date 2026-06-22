@@ -22,5 +22,5 @@ a { color: inherit; }
 
 ::selection {
   background: var(--bs-color-forest);
-  color: #fff;
+  color: var(--bs-color-white);
 }

@@ -8,7 +8,9 @@
     "build:css": "node tokens/build-tokens.mjs",
     "check": "node tokens/build-tokens.mjs --check",
     "build:sd": "style-dictionary build --config style-dictionary.config.mjs",
-    "build": "npm run build:css && npm run build:sd"
+    "build": "npm run build:css && npm run build:sd",
+    "coverage": "node tools/coverage.mjs css design",
+    "coverage:check": "node tools/coverage.mjs --check css"
   },
   "devDependencies": {
     "style-dictionary": "^4.3.0"
