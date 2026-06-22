@@ -13,8 +13,8 @@ Feature: Brand voice
 
   @marketing
   Scenario: The one-line description is consistent
-    Then surfaces present the description "Infrastructure for letting AI agents do real engineering work without handing them unbounded authority."
+    Then surfaces present the description "Capability security for AI agents — authority drawn at the door, not the process or container. Every claim graded against the running code."
 
-  @marketing
+  @thesis
   Scenario: The thesis is stated
     Then surfaces present the thesis "Draw the boundary at the door — a scope-bounded set of capabilities an agent acts through, not the process, not the container."

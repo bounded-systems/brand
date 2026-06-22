@@ -9,8 +9,8 @@
     "$description": "Primary tagline — hero / link cards / titles."
   },
   "description": {
-    "$value": "Infrastructure for letting AI agents do real engineering work without handing them unbounded authority.",
-    "$description": "One-line description — meta description, intros."
+    "$value": "Capability security for AI agents — authority drawn at the door, not the process or container. Every claim graded against the running code.",
+    "$description": "One-line description — meta description (kept ≤160 chars), intros."
   },
   "thesis": {
     "$value": "Draw the boundary at the door — a scope-bounded set of capabilities an agent acts through, not the process, not the container.",
