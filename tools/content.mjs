@@ -112,6 +112,13 @@ for (const dir of surfaceDirs) {
 const PLACEHOLDER = /\b(lorem ipsum|todo|fixme|tbd|coming soon|placeholder|xxx+)\b/i;
 const BUZZWORDS = /\b(leverage|synergy|cutting[- ]edge|world[- ]class|revolutionary|game[- ]?changing|click here|best[- ]in[- ]class|seamlessly)\b/i;
 const CASING = [[/\bGithub\b/, "GitHub"], [/\bJavascript\b/, "JavaScript"], [/\bTypescript\b/, "TypeScript"]];
+// Brand glossary: discouraged term → preferred. Keeps the vocabulary on-message.
+const GLOSSARY = [
+  [/\bpermissions?\b/i, "capability/capabilities"],
+  [/\bbots?\b/i, "agent(s)"],
+  [/\bwhitelist\w*\b/i, "allowlist"],
+  [/\bblacklist\w*\b/i, "denylist"],
+];
 function lintCopy(text, { strict }) {
   const out = [];
   const ph = text.match(PLACEHOLDER);
@@ -120,6 +127,7 @@ function lintCopy(text, { strict }) {
     const bz = text.match(BUZZWORDS);
     if (bz) out.push({ level: "warn", msg: `buzzword: "${bz[0]}"` });
     for (const [re, right] of CASING) if (re.test(text)) out.push({ level: "error", msg: `casing: write "${right}"` });
+    for (const [re, pref] of GLOSSARY) { const g = text.match(re); if (g) out.push({ level: "warn", msg: `term "${g[0]}" → prefer ${pref}` }); }
     if (/\w  \w/.test(text)) out.push({ level: "warn", msg: "double space" });
   }
   return out;
