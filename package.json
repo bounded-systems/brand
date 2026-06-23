@@ -14,6 +14,9 @@
     "coverage:colors": "node tools/coverage.mjs --colors --check css",
     "content": "node tools/content.mjs",
     "content:check": "node tools/content.mjs --check",
+    "resume:build": "node tools/build-resume.mjs",
+    "resume:pdf": "node tools/render-resume.mjs",
+    "resume:check": "node tools/build-resume.mjs --check && node tools/resume-check.mjs --check",
     "meta": "node tools/meta.mjs",
     "a11y": "node tools/a11y.mjs",
     "a11y:check": "node tools/a11y.mjs --check"
