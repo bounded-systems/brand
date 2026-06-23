@@ -3,7 +3,7 @@
 
 > I ship systems where agents write the code — and I built the tooling to trust them in production.
 
-Brooklyn · Aura · Recurse Center · Bennington · [GitHub](https://github.com/robertdelanghe) · [Writing](https://robertdelanghe.dev/writing) · [bounded.tools](https://bounded.tools) · [cv@robertdelanghe.dev](mailto:cv@robertdelanghe.dev)
+Brooklyn · Aura · Recurse Center · Bennington · [GitHub](https://github.com/bdelanghe) · [Writing](https://robertdelanghe.dev/writing) · [bounded.tools](https://bounded.tools) · [cv@robertdelanghe.dev](mailto:cv@robertdelanghe.dev)
 
 At Aura I ship agent-authored delivery in production. The instinct behind it is old — make invalid states unrepresentable, push correctness into the type system until violations can't compile — and agents are just where it turned urgent: orgs want them shipping like senior engineers and give them none of the safety rails.
 

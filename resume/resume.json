@@ -10,7 +10,7 @@
     "location": { "city": "Brooklyn", "region": "NY", "countryCode": "US" },
     "affiliations": ["Aura", "Recurse Center", "Bennington"],
     "profiles": [
-      { "network": "GitHub", "url": "https://github.com/robertdelanghe" },
+      { "network": "GitHub", "url": "https://github.com/bdelanghe" },
       { "network": "Writing", "url": "https://robertdelanghe.dev/writing" },
       { "network": "bounded.tools", "url": "https://bounded.tools" }
     ]
