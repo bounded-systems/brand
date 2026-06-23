@@ -39,7 +39,8 @@ const schema = JSON.parse(await readFile(join(brandRoot, "content", "strings.sch
 const keyRe = new RegExp(Object.keys(schema.patternProperties)[0]);
 function validate(json, where) {
   const errs = [];
-  for (const req of schema.required || []) if (!(req in json)) errs.push(`${where}: missing required token '${req}'`);
+  // `required` tokens are enforced on the MERGED catalog (see below), not per-file — so a
+  // per-repo surface only ADDS keys; it needn't restate the canonical core tokens.
   for (const [k, v] of Object.entries(json)) {
     if (k.startsWith("$")) continue;
     if (!keyRe.test(k)) errs.push(`${where}: key '${k}' doesn't match ${keyRe}`);
@@ -59,6 +60,9 @@ for (const dir of repoDirs) {
   schemaErrors.push(...validate(raw, basename(dir) + "/content/strings.json"));
   for (const [k, val] of Object.entries(flatten(raw))) catalog[k] = { value: val, source: basename(dir) };
 }
+// `required` tokens must exist in the MERGED catalog — core supplies them, so a surface
+// extends (adds keys) without restating name/tagline/description.
+for (const req of schema.required || []) if (!(req in catalog)) schemaErrors.push(`merged catalog: missing required token '${req}'`);
 const valueSet = new Set(Object.values(catalog).map((c) => c.value));
 
 // ---- 3. gherkin scenarios with @tags -------------------------------------------
