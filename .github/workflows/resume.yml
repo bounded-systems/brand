@@ -48,6 +48,9 @@ jobs:
         run: CHROME_BIN=google-chrome node tools/render-resume.mjs
       - name: Validate the rendered PDF
         run: node tools/resume-check.mjs --pdf resume/resume.pdf --check
-      # To publish the PDF as a downloadable build artifact, add an
-      # actions/upload-artifact step here (pin it to a full commit SHA, per the
-      # repo's action-hardening convention).
+      - name: Upload résumé PDF
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: resume-pdf
+          path: resume/resume.pdf
+          if-no-files-found: error
