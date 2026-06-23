@@ -6,9 +6,11 @@
   "type": "module",
   "scripts": {
     "build:css": "node tokens/build-tokens.mjs",
+    "build:headers": "node tools/generate-headers.mjs",
     "check": "node tokens/build-tokens.mjs --check",
+    "check:headers": "node tools/generate-headers.mjs --check dist/github-headers",
     "build:sd": "style-dictionary build --config style-dictionary.config.mjs",
-    "build": "npm run build:css && npm run build:sd",
+    "build": "npm run build:css && npm run build:sd && npm run build:headers",
     "coverage": "node tools/coverage.mjs css design",
     "coverage:check": "node tools/coverage.mjs --check css",
     "coverage:colors": "node tools/coverage.mjs --colors --check css",

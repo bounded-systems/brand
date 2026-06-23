@@ -15,5 +15,9 @@
   "thesis": {
     "$value": "Draw the boundary at the door — a scope-bounded set of capabilities an agent acts through, not the process, not the container.",
     "$description": "The core bet, stated once."
+  },
+  "keywords": {
+    "$value": "CAPABILITY SECURITY · AGENT INFRASTRUCTURE · AI · DEVELOPER TOOLS",
+    "$description": "Short all-caps keyword strip — SVG headers, meta keywords."
   }
 }
