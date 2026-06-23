@@ -11,7 +11,7 @@
     "affiliations": ["Aura", "Recurse Center", "Bennington"],
     "profiles": [
       { "network": "GitHub", "url": "https://github.com/bdelanghe" },
-      { "network": "Writing", "url": "https://robertdelanghe.dev/writing" },
+      { "network": "Writing", "url": "https://robertdelanghe.dev/blog" },
       { "network": "bounded.tools", "url": "https://bounded.tools" }
     ]
   },
