@@ -1,0 +1,39 @@
+name: publish
+
+# Cut a release by pushing a tag: `npm version <patch|minor|major>` then
+# `git push --follow-tags`. This publishes @bounded-systems/brand to npm with
+# build provenance. (The version-bump step is a natural seam for `mint` later.)
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # npm provenance (OIDC)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      # Tag must match package.json version, or the publish is a lie.
+      - name: Tag matches package.json version
+        run: |
+          pkg="v$(node -p "require('./package.json').version")"
+          [ "${GITHUB_REF_NAME}" = "$pkg" ] || {
+            echo "::error::tag ${GITHUB_REF_NAME} != package.json ($pkg)"; exit 1; }
+
+      # Drift gate, then publish. prepack regenerates tokens.css into the tarball.
+      - name: Token drift check
+        run: node tokens/build-tokens.mjs --check
+
+      - name: Publish
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
