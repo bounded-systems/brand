@@ -1,0 +1,16 @@
+Copyright (c) 2026 Bounded Systems. All rights reserved.
+
+The Bounded Systems name, marks, logos, wordmark, avatar, and lockup artwork in
+this repository — including all files under mark/, avatar/, lockup/, and
+favicon-32.png — are proprietary. No license or right to use, reproduce, modify,
+or distribute these brand assets is granted except with prior written permission
+from Bounded Systems.
+
+The design tokens and build tooling (tokens/, css/, tools/, and the artifacts
+they generate) are published for consumption by Bounded Systems projects and
+partners. All rights are otherwise reserved.
+
+Bundled fonts under css/fonts/*.woff2 — Space Grotesk and IBM Plex Mono — are
+licensed under the SIL Open Font License 1.1 by their respective authors and are
+redistributed under that license. Nothing in this file restricts your rights to
+those font files under the OFL.
