@@ -92,14 +92,33 @@ Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 | --- | --- | --- |
 | `forest` | `#0C5A42` | primary fill, mark on light |
 | `forest-deep` | `#073D2C` | pressed / deep |
+| `forest-tint` | `#E2EBE6` | subtle tinted surface |
+| `forest-soft` | `#D2E0D8` | fills / borders on tinted surfaces |
 | `paper` | `#EDEAE1` | app background, warm |
 | `card` | `#FFFFFF` | card surface (aliases `white`) |
 | `card-alt` | `#F4F1EA` | light avatar fill |
 | `ink` | `#16221C` | primary text |
 | `ink-soft` | `#5C6B63` | secondary text |
-| `ink-mono` | `#6E7C73` | mono label / slug text |
+| `ink-mono` | `#5E6B62` | mono label / slug text (WCAG-AA on paper) |
 | `line` | `#E4E0D4` | hairline borders |
 | `white` | `#FFFFFF` | mark on forest |
+| `clay` | `#A6432F` | accent / negative |
+| `clay-tint` | `#F2DED8` | negative surface |
+| `amber` | `#B5762A` | caution / highlight |
+| `amber-tint` | `#F3E8D6` | caution surface |
+
+### Grade colors
+
+Status colors for graded claims (*Enforced* · *Partial* · *Aspirational*). Only
+the **base** is authored in `tokens.json`; `build-tokens.mjs` derives the `-bg`
+(light surface), `-fg` (readable text), and `-on-dark` ramps deterministically,
+so consumers get the full set as `--bs-grade-*` variables.
+
+| Token | Hex | Use |
+| --- | --- | --- |
+| `grade-enforced` | `#3FB984` | proven / enforced in running code |
+| `grade-partial` | `#C8902F` | partially enforced |
+| `grade-aspirational` | `#7E8C83` | aspirational / not yet enforced |
 
 ## Avatar usage
 
