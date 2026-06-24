@@ -84,6 +84,36 @@ npm run build:sd   # → dist/{tokens.scss,tokens.js,tokens.flat.json,Tokens.swi
 gitignored — it's generated, never committed. JSON is the source; every CSS,
 SCSS, JS, Swift, and XML file is a derived artifact.
 
+**As a package** — depend on `@bounded-systems/brand` (npm) and import by path:
+
+```js
+import tokens from "@bounded-systems/brand/tokens.json" with { type: "json" };
+```
+```css
+@import "@bounded-systems/brand/tokens.css";
+```
+
+### Deployed token bundle (a contract, not a dump)
+
+`npm run tokens:dist` assembles `dist/tokens-site/` and `deploy-tokens.yml`
+publishes it to a stable URL on every release. The bundle is a **versioned,
+content-addressed contract**:
+
+```
+tokens-site/
+├── manifest.json     ← the contract — validates against tokens/manifest.schema.json
+├── tokens.json       ← canonical DTCG source  (application/design-tokens+json)
+├── tokens.css        ← CSS variables           (text/css)
+├── tokens.scss · tokens.js · tokens.flat.json · Tokens.swift · tokens.xml
+```
+
+`manifest.json` declares every projection with its IANA **media type** and
+**SHA-256**, plus the package `version` and (in CI) the source `commit`. A
+consumer fetches the manifest, picks a format, and **verifies the bytes by hash**
+— integrity over freshness. `node tools/build-tokens-dist.mjs --check` gates
+[DTCG] conformance and the contract shape in CI, so the deployed surface can't
+drift from the spec.
+
 Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 
 ## Palette
@@ -92,14 +122,33 @@ Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 | --- | --- | --- |
 | `forest` | `#0C5A42` | primary fill, mark on light |
 | `forest-deep` | `#073D2C` | pressed / deep |
+| `forest-tint` | `#E2EBE6` | subtle tinted surface |
+| `forest-soft` | `#D2E0D8` | fills / borders on tinted surfaces |
 | `paper` | `#EDEAE1` | app background, warm |
 | `card` | `#FFFFFF` | card surface (aliases `white`) |
 | `card-alt` | `#F4F1EA` | light avatar fill |
 | `ink` | `#16221C` | primary text |
 | `ink-soft` | `#5C6B63` | secondary text |
-| `ink-mono` | `#6E7C73` | mono label / slug text |
+| `ink-mono` | `#5E6B62` | mono label / slug text (WCAG-AA on paper) |
 | `line` | `#E4E0D4` | hairline borders |
 | `white` | `#FFFFFF` | mark on forest |
+| `clay` | `#A6432F` | accent / negative |
+| `clay-tint` | `#F2DED8` | negative surface |
+| `amber` | `#B5762A` | caution / highlight |
+| `amber-tint` | `#F3E8D6` | caution surface |
+
+### Grade colors
+
+Status colors for graded claims (*Enforced* · *Partial* · *Aspirational*). Only
+the **base** is authored in `tokens.json`; `build-tokens.mjs` derives the `-bg`
+(light surface), `-fg` (readable text), and `-on-dark` ramps deterministically,
+so consumers get the full set as `--bs-grade-*` variables.
+
+| Token | Hex | Use |
+| --- | --- | --- |
+| `grade-enforced` | `#3FB984` | proven / enforced in running code |
+| `grade-partial` | `#C8902F` | partially enforced |
+| `grade-aspirational` | `#7E8C83` | aspirational / not yet enforced |
 
 ## Avatar usage
 
@@ -124,3 +173,4 @@ clips the door. Use the dedicated wide lockup instead:
 
 [Space Grotesk]: https://fonts.google.com/specimen/Space+Grotesk
 [IBM Plex Mono]: https://fonts.google.com/specimen/IBM+Plex+Mono
+[DTCG]: https://tr.designtokens.org/format/
