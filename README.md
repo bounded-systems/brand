@@ -84,6 +84,36 @@ npm run build:sd   # → dist/{tokens.scss,tokens.js,tokens.flat.json,Tokens.swi
 gitignored — it's generated, never committed. JSON is the source; every CSS,
 SCSS, JS, Swift, and XML file is a derived artifact.
 
+**As a package** — depend on `@bounded-systems/brand` (npm) and import by path:
+
+```js
+import tokens from "@bounded-systems/brand/tokens.json" with { type: "json" };
+```
+```css
+@import "@bounded-systems/brand/tokens.css";
+```
+
+### Deployed token bundle (a contract, not a dump)
+
+`npm run tokens:dist` assembles `dist/tokens-site/` and `deploy-tokens.yml`
+publishes it to a stable URL on every release. The bundle is a **versioned,
+content-addressed contract**:
+
+```
+tokens-site/
+├── manifest.json     ← the contract — validates against tokens/manifest.schema.json
+├── tokens.json       ← canonical DTCG source  (application/design-tokens+json)
+├── tokens.css        ← CSS variables           (text/css)
+├── tokens.scss · tokens.js · tokens.flat.json · Tokens.swift · tokens.xml
+```
+
+`manifest.json` declares every projection with its IANA **media type** and
+**SHA-256**, plus the package `version` and (in CI) the source `commit`. A
+consumer fetches the manifest, picks a format, and **verifies the bytes by hash**
+— integrity over freshness. `node tools/build-tokens-dist.mjs --check` gates
+[DTCG] conformance and the contract shape in CI, so the deployed surface can't
+drift from the spec.
+
 Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 
 ## Palette
@@ -143,3 +173,4 @@ clips the door. Use the dedicated wide lockup instead:
 
 [Space Grotesk]: https://fonts.google.com/specimen/Space+Grotesk
 [IBM Plex Mono]: https://fonts.google.com/specimen/IBM+Plex+Mono
+[DTCG]: https://tr.designtokens.org/format/
