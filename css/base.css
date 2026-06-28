@@ -23,7 +23,12 @@ a { color: inherit; }
 pre, code { font-family: var(--bs-font-mono); font-size: inherit; }
 pre { margin: 0; white-space: pre; overflow-x: auto; }
 
-::selection {
-  background: var(--bs-color-forest);
-  color: var(--bs-color-white);
+/* ::selection is not yet Baseline Widely Available; guard it as a progressive
+   enhancement so the feature query is the tested fallback (browsers without it
+   keep the native selection colors). */
+@supports selector(::selection) {
+  ::selection {
+    background: var(--bs-color-forest);
+    color: var(--bs-color-white);
+  }
 }
