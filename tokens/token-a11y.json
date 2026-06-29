@@ -42,9 +42,8 @@
   },
 
   "likeness": {
-    "$comment": "Hygiene (near-duplicate tokens, ΔE<~2 → warn) + distinctness (categorical status colours must stay separable under normal AND deuteranopia/protanopia/tritanopia → error). Three exact aliases by design — one canonical value, multiple semantic names: card≡white (#FFFFFF), card-alt≡paper (#EDEAE1; collapsed from cream), ink-mono≡ink-soft (#5C6B63; collapsed from ink-500). The two near-dups the suite previously warned on (ink-soft≈ink-mono ΔE 0.92, paper≈card-alt ΔE 1.78) were imperceptible, so they were collapsed to exact aliases. conformance-kit ≥0.8.0 recognises identical-value aliases automatically (noRedundantTokens true); the ignore list keeps older pins clean too. The grade trio must not collapse.",
+    "$comment": "Hygiene (near-duplicate tokens, ΔE<~2 → warn) + distinctness (categorical status colours must stay separable under normal AND deuteranopia/protanopia/tritanopia → error). Aliases are recognised STRUCTURALLY, not by a manual ignore list: the layered DTCG source maps several semantic names onto one primitive value — card≡white (#FFFFFF), card-alt≡paper (#EDEAE1), ink-mono≡ink-soft (#5C6B63) — and conformance-kit ≥0.8.0 treats any identical-value pair as an intentional alias (noRedundantTokens counts only NEAR-but-distinct definitions). So no allow-list is needed: collapse a near-dup to an exact alias in tokens.json and the gate stops flagging it, unambiguously. The grade trio must not collapse.",
     "categorical": ["grade-enforced", "grade-partial", "grade-aspirational"],
-    "ignore": ["bs-color-card", "bs-color-card-alt", "bs-color-ink-mono"],
     "thresholds": { "dupSeverity": "warn" }
   }
 }

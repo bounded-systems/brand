@@ -48,7 +48,7 @@ function memberTail(name, m) {
     case "typography": return `${s.styles} style(s), ${s.errors} error(s), ${s.warnings} warn(s)`;
     case "targetSize": return `${s.targets} target(s), ${s.belowAA} below AA${m.coverage === "none" ? " (none declared)" : ""}`;
     case "opacity": return `${s.usages} usage(s), ${s.failing} failing`;
-    case "likeness": return `${s.nearDuplicates} near-dup(s), ${s.categoricalCollapses} collapse(s)`;
+    case "likeness": return `${s.redundantTokens ?? s.nearDuplicates} redundant near-dup(s) + ${s.identicalPairs ?? 0} intentional alias(es), ${s.categoricalCollapses} collapse(s)`;
     default: return "";
   }
 }
