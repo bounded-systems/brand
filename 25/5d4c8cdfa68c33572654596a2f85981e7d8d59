@@ -1,0 +1,24 @@
+tokens/tokens.json
+  s_71a0aecf45d82c::t_074c5f02fa6c9c 62
+  s_71a0aecf45d82c::t_c9e1316293f6e8 71-74
+tokens/tokens.css
+  s_71a0aecf45d82c::t_a60f738ef492d1 97-100,176-179,229,236
+tokens/tokens.ts
+  s_71a0aecf45d82c::t_e604a0c6443b25 57-60,103-104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "255d4c8cdfa68c33572654596a2f85981e7d8d59",
+  "prompts": {},
+  "sessions": {
+    "s_71a0aecf45d82c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f6f6e806-c9db-459c-ba56-79aa27861998",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Robert DeLanghe <1240090+bdelanghe@users.noreply.github.com>"
+    }
+  }
+}
