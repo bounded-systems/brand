@@ -47,8 +47,9 @@ jobs:
         with:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
+      - run: npm ci # install devDeps (style-dictionary) so prepack's build can run
       - name: Publish to npm
-        # prepack regenerates tokens.css + tokens.ts into the tarball.
+        # prepack (build:css + build:ts) regenerates tokens.css + tokens.ts into the tarball.
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,7 +1,7 @@
 {
   "name": "@bounded-systems/brand",
   "version": "1.3.0",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "exports": {
     ".": "./tokens/tokens.ts",
     "./tokens.json": "./tokens/tokens.json"
@@ -17,11 +17,7 @@
       "tokens/manifest.schema.json",
       "css/base.css",
       "css/fonts.css",
-      "css/fonts",
-      "mark",
-      "avatar",
-      "lockup",
-      "favicon-32.png"
+      "css/fonts"
     ],
     "exclude": [
       "dist",
