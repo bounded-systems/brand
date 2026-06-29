@@ -35,7 +35,7 @@ export const generateHeaderSvg = (theme, copy) => {
   const bg       = prim(dark ? "ink-900" : "paper");
   const nameCol  = prim(dark ? "paper"   : "ink-900");
   const subCol   = prim(dark ? "green-200" : "ink-600");
-  const capCol   = prim(dark ? "green-200" : "ink-500");
+  const capCol   = prim(dark ? "green-200" : "ink-600");
   const g1       = prim("green-700");
   const g2       = prim("amber-600");
   const { tagline, keywords } = copy;
