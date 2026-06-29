@@ -1,93 +1,256 @@
 /* AUTO-GENERATED from tokens.json by build-tokens.mjs — do not edit by hand. */
-:root {
-  /* color */
-  --bs-color-forest: #0C5A42;
-  --bs-color-forest-deep: #073D2C;
-  --bs-color-paper: #EDEAE1;
-  --bs-color-card: #FFFFFF;
-  --bs-color-card-alt: #EDEAE1;
-  --bs-color-ink: #16221C;
-  --bs-color-ink-soft: #5C6B63;
-  --bs-color-ink-mono: #5C6B63;
-  --bs-color-line: #888374;
-  --bs-color-white: #FFFFFF;
-  --bs-color-forest-tint: #E2EBE6;
-  --bs-color-forest-soft: #5F8971;
-  --bs-color-on-forest: #D2E0D8;
-  --bs-color-on-forest-soft: #BBD1CA;
-  --bs-color-on-forest-line: #58B196;
-  --bs-color-clay: #9F3E2B;
-  --bs-color-clay-tint: #F9EDE9;
-  --bs-color-amber: #8C5818;
-  --bs-color-amber-tint: #F3E8D6;
-  /* font family */
-  --bs-font-display: "Space Grotesk", sans-serif;
-  --bs-font-mono: "IBM Plex Mono", monospace;
-  /* size & radius */
-  --bs-text-h1: 46px;
-  --bs-text-h2: 26px;
-  --bs-text-title: 18px;
-  --bs-text-body: 16px;
-  --bs-text-label: 11px;
-  --bs-radius-lg: 18px;
-  --bs-radius-md: 12px;
-  /* interactive-target / control sizing (WCAG 2.5.8 AA ≥24px; 2.5.5 AAA ≥44px) */
-  --bs-control-min-tap-target: 24px;
-  --bs-control-sm: 36px;
-  --bs-control-md: 44px;
-  --bs-control-lg: 52px;
-  /* grade — base + derived bg/fg tints (deterministic) */
-  --bs-grade-enforced: #3FB984;
-  --bs-grade-enforced-bg: #E2F5ED;
-  --bs-grade-enforced-fg: #28664B;
-  --bs-grade-enforced-on-dark: #9FDCC2;
-  --bs-grade-enforced-on-dark-bg: #1C372B;
-  --bs-grade-partial: #C8902F;
-  --bs-grade-partial-bg: #F7EEE0;
-  --bs-grade-partial-fg: #665425;
-  --bs-grade-partial-on-dark: #E4C897;
-  --bs-grade-partial-on-dark-bg: #2F311F;
-  --bs-grade-aspirational: #7E8C83;
-  --bs-grade-aspirational-bg: #ECEEEC;
-  --bs-grade-aspirational-fg: #45524A;
-  --bs-grade-aspirational-on-dark: #BFC6C1;
-  --bs-grade-aspirational-on-dark-bg: #25312A;
-}
+/* baobab token structure (the design-system shape); these are brand's pinned values. */
+@layer baobab {
+  @property --color-forest { syntax: "<color>"; inherits: true; initial-value: #0C5A42; }
+  @property --color-forest-deep { syntax: "<color>"; inherits: true; initial-value: #073D2C; }
+  @property --color-paper { syntax: "<color>"; inherits: true; initial-value: #EDEAE1; }
+  @property --color-card { syntax: "<color>"; inherits: true; initial-value: #FFFFFF; }
+  @property --color-card-alt { syntax: "<color>"; inherits: true; initial-value: #EDEAE1; }
+  @property --color-ink { syntax: "<color>"; inherits: true; initial-value: #16221C; }
+  @property --color-ink-soft { syntax: "<color>"; inherits: true; initial-value: #5C6B63; }
+  @property --color-ink-mono { syntax: "<color>"; inherits: true; initial-value: #5C6B63; }
+  @property --color-line { syntax: "<color>"; inherits: true; initial-value: #888374; }
+  @property --color-white { syntax: "<color>"; inherits: true; initial-value: #FFFFFF; }
+  @property --color-forest-tint { syntax: "<color>"; inherits: true; initial-value: #E2EBE6; }
+  @property --color-forest-soft { syntax: "<color>"; inherits: true; initial-value: #5F8971; }
+  @property --color-on-forest { syntax: "<color>"; inherits: true; initial-value: #D2E0D8; }
+  @property --color-on-forest-soft { syntax: "<color>"; inherits: true; initial-value: #BBD1CA; }
+  @property --color-on-forest-line { syntax: "<color>"; inherits: true; initial-value: #58B196; }
+  @property --color-clay { syntax: "<color>"; inherits: true; initial-value: #9F3E2B; }
+  @property --color-clay-tint { syntax: "<color>"; inherits: true; initial-value: #F9EDE9; }
+  @property --color-amber { syntax: "<color>"; inherits: true; initial-value: #8C5818; }
+  @property --color-amber-tint { syntax: "<color>"; inherits: true; initial-value: #F3E8D6; }
+  @property --text-h1 { syntax: "<length>"; inherits: true; initial-value: 46px; }
+  @property --text-h2 { syntax: "<length>"; inherits: true; initial-value: 26px; }
+  @property --text-title { syntax: "<length>"; inherits: true; initial-value: 18px; }
+  @property --text-body { syntax: "<length>"; inherits: true; initial-value: 16px; }
+  @property --text-label { syntax: "<length>"; inherits: true; initial-value: 11px; }
+  @property --size-readable { syntax: "<length>"; inherits: true; initial-value: 40ch; }
+  @property --size-prose { syntax: "<length>"; inherits: true; initial-value: 65ch; }
+  @property --size-card { syntax: "<length>"; inherits: true; initial-value: 220px; }
+  @property --size-card-sm { syntax: "<length>"; inherits: true; initial-value: 160px; }
+  @property --size-container { syntax: "<length>"; inherits: true; initial-value: 1100px; }
+  @property --size-wide { syntax: "<length>"; inherits: true; initial-value: 1280px; }
+  @property --radius-sm { syntax: "<length>"; inherits: true; initial-value: 8px; }
+  @property --radius-md { syntax: "<length>"; inherits: true; initial-value: 12px; }
+  @property --radius-lg { syntax: "<length>"; inherits: true; initial-value: 18px; }
+  @property --radius-pill { syntax: "<length>"; inherits: true; initial-value: 999px; }
+  @property --space-0 { syntax: "<length>"; inherits: true; initial-value: 0; }
+  @property --space-px { syntax: "<length>"; inherits: true; initial-value: 1px; }
+  @property --space-1 { syntax: "<length>"; inherits: true; initial-value: 4px; }
+  @property --space-2 { syntax: "<length>"; inherits: true; initial-value: 8px; }
+  @property --space-3 { syntax: "<length>"; inherits: true; initial-value: 12px; }
+  @property --space-4 { syntax: "<length>"; inherits: true; initial-value: 16px; }
+  @property --space-5 { syntax: "<length>"; inherits: true; initial-value: 20px; }
+  @property --space-6 { syntax: "<length>"; inherits: true; initial-value: 24px; }
+  @property --space-7 { syntax: "<length>"; inherits: true; initial-value: 28px; }
+  @property --space-8 { syntax: "<length>"; inherits: true; initial-value: 32px; }
+  @property --space-10 { syntax: "<length>"; inherits: true; initial-value: 40px; }
+  @property --space-12 { syntax: "<length>"; inherits: true; initial-value: 48px; }
+  @property --space-16 { syntax: "<length>"; inherits: true; initial-value: 64px; }
+  @property --space-20 { syntax: "<length>"; inherits: true; initial-value: 80px; }
+  @property --space-24 { syntax: "<length>"; inherits: true; initial-value: 96px; }
+  @property --control-min-tap-target { syntax: "<length>"; inherits: true; initial-value: 24px; }
+  @property --control-sm { syntax: "<length>"; inherits: true; initial-value: 36px; }
+  @property --control-md { syntax: "<length>"; inherits: true; initial-value: 44px; }
+  @property --control-lg { syntax: "<length>"; inherits: true; initial-value: 52px; }
+  @property --grade-enforced { syntax: "<color>"; inherits: true; initial-value: #3FB984; }
+  @property --grade-enforced-bg { syntax: "<color>"; inherits: true; initial-value: #E2F5ED; }
+  @property --grade-enforced-fg { syntax: "<color>"; inherits: true; initial-value: #28664B; }
+  @property --grade-enforced-on-dark { syntax: "<color>"; inherits: true; initial-value: #9FDCC2; }
+  @property --grade-enforced-on-dark-bg { syntax: "<color>"; inherits: true; initial-value: #1C372B; }
+  @property --grade-partial { syntax: "<color>"; inherits: true; initial-value: #C8902F; }
+  @property --grade-partial-bg { syntax: "<color>"; inherits: true; initial-value: #F7EEE0; }
+  @property --grade-partial-fg { syntax: "<color>"; inherits: true; initial-value: #665425; }
+  @property --grade-partial-on-dark { syntax: "<color>"; inherits: true; initial-value: #E4C897; }
+  @property --grade-partial-on-dark-bg { syntax: "<color>"; inherits: true; initial-value: #2F311F; }
+  @property --grade-aspirational { syntax: "<color>"; inherits: true; initial-value: #7E8C83; }
+  @property --grade-aspirational-bg { syntax: "<color>"; inherits: true; initial-value: #ECEEEC; }
+  @property --grade-aspirational-fg { syntax: "<color>"; inherits: true; initial-value: #45524A; }
+  @property --grade-aspirational-on-dark { syntax: "<color>"; inherits: true; initial-value: #BFC6C1; }
+  @property --grade-aspirational-on-dark-bg { syntax: "<color>"; inherits: true; initial-value: #25312A; }
 
-/* Text styles — composite recipes built from the tokens above. */
-.bs-text-h1 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 46px;
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-}
-.bs-text-h2 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-.bs-text-title {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-}
-.bs-text-body {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0;
-}
-.bs-text-label {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  :root {
+    /* baobab tokens — clean semantic names, no defensive prefix (the @layer is the namespace) */
+    --color-forest: #0C5A42;
+    --color-forest-deep: #073D2C;
+    --color-paper: #EDEAE1;
+    --color-card: #FFFFFF;
+    --color-card-alt: #EDEAE1;
+    --color-ink: #16221C;
+    --color-ink-soft: #5C6B63;
+    --color-ink-mono: #5C6B63;
+    --color-line: #888374;
+    --color-white: #FFFFFF;
+    --color-forest-tint: #E2EBE6;
+    --color-forest-soft: #5F8971;
+    --color-on-forest: #D2E0D8;
+    --color-on-forest-soft: #BBD1CA;
+    --color-on-forest-line: #58B196;
+    --color-clay: #9F3E2B;
+    --color-clay-tint: #F9EDE9;
+    --color-amber: #8C5818;
+    --color-amber-tint: #F3E8D6;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+    --text-h1: 46px;
+    --text-h2: 26px;
+    --text-title: 18px;
+    --text-body: 16px;
+    --text-label: 11px;
+    --size-readable: 40ch;
+    --size-prose: 65ch;
+    --size-card: 220px;
+    --size-card-sm: 160px;
+    --size-container: 1100px;
+    --size-wide: 1280px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-pill: 999px;
+    --space-0: 0;
+    --space-px: 1px;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-7: 28px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+    --control-min-tap-target: 24px;
+    --control-sm: 36px;
+    --control-md: 44px;
+    --control-lg: 52px;
+    --grade-enforced: #3FB984;
+    --grade-enforced-bg: #E2F5ED;
+    --grade-enforced-fg: #28664B;
+    --grade-enforced-on-dark: #9FDCC2;
+    --grade-enforced-on-dark-bg: #1C372B;
+    --grade-partial: #C8902F;
+    --grade-partial-bg: #F7EEE0;
+    --grade-partial-fg: #665425;
+    --grade-partial-on-dark: #E4C897;
+    --grade-partial-on-dark-bg: #2F311F;
+    --grade-aspirational: #7E8C83;
+    --grade-aspirational-bg: #ECEEEC;
+    --grade-aspirational-fg: #45524A;
+    --grade-aspirational-on-dark: #BFC6C1;
+    --grade-aspirational-on-dark-bg: #25312A;
+
+    /* legacy --bs-* aliases — transition only; migrate consumers off these, then drop */
+    --bs-color-forest: #0C5A42;
+    --bs-color-forest-deep: #073D2C;
+    --bs-color-paper: #EDEAE1;
+    --bs-color-card: #FFFFFF;
+    --bs-color-card-alt: #EDEAE1;
+    --bs-color-ink: #16221C;
+    --bs-color-ink-soft: #5C6B63;
+    --bs-color-ink-mono: #5C6B63;
+    --bs-color-line: #888374;
+    --bs-color-white: #FFFFFF;
+    --bs-color-forest-tint: #E2EBE6;
+    --bs-color-forest-soft: #5F8971;
+    --bs-color-on-forest: #D2E0D8;
+    --bs-color-on-forest-soft: #BBD1CA;
+    --bs-color-on-forest-line: #58B196;
+    --bs-color-clay: #9F3E2B;
+    --bs-color-clay-tint: #F9EDE9;
+    --bs-color-amber: #8C5818;
+    --bs-color-amber-tint: #F3E8D6;
+    --bs-font-display: "Space Grotesk", sans-serif;
+    --bs-font-mono: "IBM Plex Mono", monospace;
+    --bs-text-h1: 46px;
+    --bs-text-h2: 26px;
+    --bs-text-title: 18px;
+    --bs-text-body: 16px;
+    --bs-text-label: 11px;
+    --bs-size-readable: 40ch;
+    --bs-size-prose: 65ch;
+    --bs-size-card: 220px;
+    --bs-size-card-sm: 160px;
+    --bs-size-container: 1100px;
+    --bs-size-wide: 1280px;
+    --bs-radius-sm: 8px;
+    --bs-radius-md: 12px;
+    --bs-radius-lg: 18px;
+    --bs-radius-pill: 999px;
+    --bs-space-0: 0;
+    --bs-space-px: 1px;
+    --bs-space-1: 4px;
+    --bs-space-2: 8px;
+    --bs-space-3: 12px;
+    --bs-space-4: 16px;
+    --bs-space-5: 20px;
+    --bs-space-6: 24px;
+    --bs-space-7: 28px;
+    --bs-space-8: 32px;
+    --bs-space-10: 40px;
+    --bs-space-12: 48px;
+    --bs-space-16: 64px;
+    --bs-space-20: 80px;
+    --bs-space-24: 96px;
+    --bs-control-min-tap-target: 24px;
+    --bs-control-sm: 36px;
+    --bs-control-md: 44px;
+    --bs-control-lg: 52px;
+    --bs-grade-enforced: #3FB984;
+    --bs-grade-enforced-bg: #E2F5ED;
+    --bs-grade-enforced-fg: #28664B;
+    --bs-grade-enforced-on-dark: #9FDCC2;
+    --bs-grade-enforced-on-dark-bg: #1C372B;
+    --bs-grade-partial: #C8902F;
+    --bs-grade-partial-bg: #F7EEE0;
+    --bs-grade-partial-fg: #665425;
+    --bs-grade-partial-on-dark: #E4C897;
+    --bs-grade-partial-on-dark-bg: #2F311F;
+    --bs-grade-aspirational: #7E8C83;
+    --bs-grade-aspirational-bg: #ECEEEC;
+    --bs-grade-aspirational-fg: #45524A;
+    --bs-grade-aspirational-on-dark: #BFC6C1;
+    --bs-grade-aspirational-on-dark-bg: #25312A;
+  }
+
+  /* Text styles — composite recipes built from the tokens above. */
+  .text-h1, .bs-text-h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 46px;
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+  }
+  .text-h2, .bs-text-h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .text-title, .bs-text-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .text-body, .bs-text-body {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+  .text-label, .bs-text-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
 }
