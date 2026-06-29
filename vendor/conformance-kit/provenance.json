@@ -1,0 +1,13 @@
+{
+  "source": "https://github.com/bounded-systems/conformance-kit",
+  "ref": "229e8698bd081ec472c5b6c83878b771afbae22d",
+  "commit": "229e8698bd081ec472c5b6c83878b771afbae22d",
+  "branch": "conformance/palette-gate",
+  "pr": "https://github.com/bounded-systems/conformance-kit/pull/19",
+  "fetched": "2026-06-29",
+  "note": "Vendored, hash-pinned copy of the palette gate from bounded-systems/conformance-kit (PR #19 — static CVD-safe / APCA / non-text contrast over design tokens). Mirrors the site-side vendor pattern (bdelanghe/site vendor/conformance-kit/provenance.json). Re-pin when PR #19 merges to main and is published. Verified against these hashes before use: `npm run palette:verify` (also runs in the palette CI workflow). Zero-dependency, pure/offline — no network, no browser.",
+  "files": {
+    "gates/palette-gate.mjs": "sha256:c0b4601a148ce445b256f69e0d32618691f364c1ba7804080aa84b9850da3c8c",
+    "LICENSE": "sha256:559e93c466421832cdcfe7a000d0c19cdb2cec9d24bfb9b41f7c5bd9d448f65e"
+  }
+}

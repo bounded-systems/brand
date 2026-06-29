@@ -9,16 +9,16 @@
   --bs-color-ink: #16221C;
   --bs-color-ink-soft: #5C6B63;
   --bs-color-ink-mono: #5E6B62;
-  --bs-color-line: #E4E0D4;
+  --bs-color-line: #888374;
   --bs-color-white: #FFFFFF;
   --bs-color-forest-tint: #E2EBE6;
-  --bs-color-forest-soft: #D2E0D8;
+  --bs-color-forest-soft: #5F8971;
   --bs-color-on-forest: #D2E0D8;
   --bs-color-on-forest-soft: #BBD1CA;
-  --bs-color-on-forest-line: #6D9C8E;
-  --bs-color-clay: #A6432F;
+  --bs-color-on-forest-line: #58B196;
+  --bs-color-clay: #9F3E2B;
   --bs-color-clay-tint: #F2DED8;
-  --bs-color-amber: #B5762A;
+  --bs-color-amber: #8C5818;
   --bs-color-amber-tint: #F3E8D6;
   /* font family */
   --bs-font-display: "Space Grotesk", sans-serif;
@@ -27,7 +27,7 @@
   --bs-text-h1: 46px;
   --bs-text-h2: 26px;
   --bs-text-title: 18px;
-  --bs-text-body: 15px;
+  --bs-text-body: 16px;
   --bs-text-label: 11px;
   --bs-radius-lg: 18px;
   --bs-radius-md: 12px;
@@ -73,7 +73,7 @@
 }
 .bs-text-body {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0;

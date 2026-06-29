@@ -1,0 +1,42 @@
+name: palette
+
+# Strict palette gate over the brand design tokens. Vendored, hash-pinned copy of
+# bounded-systems/conformance-kit's palette-gate (PR #19): static CVD-safe contrast
+# (Machado-2009 deuteranopia/protanopia/tritanopia), APCA, and non-text contrast
+# (WCAG 2.2 SC 1.4.11) over tokens/palette.pairings.json.
+#
+# FAIL-CLOSED on ANY failure — WCAG-AA, CVD, APCA-comfort, non-text, or categorical
+# collapse. NO decorative exemptions: hairlines/dividers are declared `ui` and must
+# clear 3:1. The runner first verifies the vendored gate against its hash pin, then
+# rebuilds tokens.css from tokens.json (so the gate sees the source of truth, never a
+# stale artifact) and runs the gate.
+
+on:
+  push:
+    paths:
+      - "tokens/**"
+      - "vendor/conformance-kit/**"
+      - "tools/palette.mjs"
+      - ".github/workflows/palette.yml"
+  pull_request:
+    paths:
+      - "tokens/**"
+      - "vendor/conformance-kit/**"
+      - "tools/palette.mjs"
+      - ".github/workflows/palette.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  palette:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+      - name: Verify vendored palette gate against hash pin
+        run: npm run palette:verify
+      - name: Palette gate (CVD-safe + APCA + non-text) — fail-closed, no exemptions
+        run: npm run palette:check

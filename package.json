@@ -50,7 +50,10 @@
     "resume:check": "node tools/build-resume.mjs --check && node tools/resume-check.mjs --check",
     "meta": "node tools/meta.mjs",
     "a11y": "node tools/a11y.mjs",
-    "a11y:check": "node tools/a11y.mjs --check"
+    "a11y:check": "node tools/a11y.mjs --check",
+    "palette": "node tools/palette.mjs",
+    "palette:check": "npm run build:css && node tools/palette.mjs",
+    "palette:verify": "node tools/palette.mjs --verify"
   },
   "devDependencies": {
     "style-dictionary": "^4.3.0"
