@@ -58,8 +58,13 @@ function genCss(t) {
   L.push("/* baobab token structure (the design-system shape); these are brand's pinned values. */");
   L.push("@layer baobab {");
   // @property — typed, inheriting custom properties (graceful: ignored where unsupported).
+  // An @property initial-value must be COMPUTATIONALLY INDEPENDENT, so only register
+  // tokens whose value is a hex colour or an absolute px length (or 0). Relative/fluid
+  // values (rem / ch / clamp() with vw — the modern type scale) are emitted as plain
+  // custom properties, without an @property registration.
+  const independent = (v) => /^#[0-9a-fA-F]{3,8}$/.test(v) || /^-?\d*\.?\d+px$/.test(v) || v === "0";
   for (const { name, value, syntax } of TOK)
-    if (syntax) L.push(`  @property --${name} { syntax: "${syntax}"; inherits: true; initial-value: ${value}; }`);
+    if (syntax && independent(value)) L.push(`  @property --${name} { syntax: "${syntax}"; inherits: true; initial-value: ${value}; }`);
   L.push("");
   L.push("  :root {");
   L.push("    /* baobab tokens — clean semantic names, no defensive prefix (the @layer is the namespace) */");
