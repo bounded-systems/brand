@@ -42,9 +42,9 @@
   },
 
   "likeness": {
-    "$comment": "Hygiene (near-duplicate tokens, ΔE<~2 → warn) + distinctness (categorical status colours must stay separable under normal AND deuteranopia/protanopia/tritanopia → error). `card` is an intentional exact alias of `white` (one canonical #FFFFFF surface, two semantic names) so it's ignored in the duplicate scan. The remaining near-dups (ink-soft≈ink-mono, paper≈card-alt) are intentional distinct semantic roles, surfaced as hygiene warnings (not failures). The grade trio must not collapse.",
+    "$comment": "Hygiene (near-duplicate tokens, ΔE<~2 → warn) + distinctness (categorical status colours must stay separable under normal AND deuteranopia/protanopia/tritanopia → error). Three exact aliases by design — one canonical value, multiple semantic names: card≡white (#FFFFFF), card-alt≡paper (#EDEAE1; collapsed from cream), ink-mono≡ink-soft (#5C6B63; collapsed from ink-500). The two near-dups the suite previously warned on (ink-soft≈ink-mono ΔE 0.92, paper≈card-alt ΔE 1.78) were imperceptible, so they were collapsed to exact aliases. conformance-kit ≥0.8.0 recognises identical-value aliases automatically (noRedundantTokens true); the ignore list keeps older pins clean too. The grade trio must not collapse.",
     "categorical": ["grade-enforced", "grade-partial", "grade-aspirational"],
-    "ignore": ["bs-color-card"],
+    "ignore": ["bs-color-card", "bs-color-card-alt", "bs-color-ink-mono"],
     "thresholds": { "dupSeverity": "warn" }
   }
 }
