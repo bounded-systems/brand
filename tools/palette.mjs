@@ -34,7 +34,7 @@ async function verifyPin() {
     console.error(`✗ palette: vendor pin verification FAILED (${bad} file(s) drifted from ${prov.commit}). Re-vendor or restore.`);
     process.exit(1);
   }
-  console.log(`✓ palette: vendor pin verified (conformance-kit @ ${prov.commit.slice(0, 12)}, PR #19)`);
+  console.log(`✓ palette: vendor pin verified (conformance-kit @ ${prov.commit.slice(0, 12)})`);
 }
 
 async function main() {

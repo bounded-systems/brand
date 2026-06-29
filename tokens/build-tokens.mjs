@@ -34,6 +34,10 @@ function genCss(t) {
   L.push("  /* size & radius */");
   for (const k in t.size) L.push(`  --bs-${k}: ${t.size[k].$value};`);
   for (const k in t.radius) L.push(`  --bs-${k}: ${t.radius[k].$value};`);
+  if (t.control) {
+    L.push("  /* interactive-target / control sizing (WCAG 2.5.8 AA ≥24px; 2.5.5 AAA ≥44px) */");
+    for (const k in t.control) { if (k.startsWith("$")) continue; L.push(`  --bs-control-${k}: ${t.control[k].$value};`); }
+  }
   if (t.grade) {
     L.push("  /* grade — base + derived bg/fg tints (deterministic) */");
     const ink = resolveRef(t.color.ink.$value), white = resolveRef(t.color.white.$value);
@@ -44,7 +48,13 @@ function genCss(t) {
       L.push(`  --bs-grade-${k}-bg: ${mix(base, white, 0.85)};`);
       L.push(`  --bs-grade-${k}-fg: ${mix(base, ink, 0.55)};`);
       L.push(`  --bs-grade-${k}-on-dark: ${mix(base, white, 0.5)};`);
-      L.push(`  --bs-grade-${k}-on-dark-bg: color-mix(in srgb, ${base} 14%, transparent);`);
+      // Status chip on the dark panel. SOLID (baked 14% of the base over ink), not a
+      // `color-mix(… transparent)` translucent fill: a translucent layer's EFFECTIVE
+      // colour depends on an unknown backdrop, so its composited contrast can't be
+      // guaranteed statically — the opacity-contrast gate flagged the 14% tint at
+      // ~1.27:1. Baked solid over ink, the chip is deterministic and the on-dark
+      // status text composites against a known surface (≥4.5:1, AA text).
+      L.push(`  --bs-grade-${k}-on-dark-bg: ${mix(base, ink, 0.86)};`);
     }
   }
   L.push("}");

@@ -94,13 +94,19 @@ body {
 .r-contact li:not(:last-child)::after {
   content: "·";
   margin: 0 10px;
+  /* Solid token (5.28:1 on forest), not a dimmed foreground. `opacity: .6` here
+     used to composite the on-dark mint token down to 2.95:1 — below AA. The
+     opacity-contrast gate (Token Accessibility suite) flags exactly that
+     effective-contrast drop. */
   color: var(--bs-grade-enforced-on-dark);
-  opacity: 0.6;
 }
 .r-contact a {
   color: var(--bs-color-white);
   text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--bs-color-white) 40%, transparent);
+  /* Translucent-white underline raised 40%→60% so the EFFECTIVE (composited)
+     contrast on forest clears the 3:1 non-text floor (WCAG 1.4.11): white@.40
+     composited to 2.66:1 (fail) → white@.60 ≈ 4.06:1 (pass). */
+  border-bottom: 1px solid color-mix(in srgb, var(--bs-color-white) 60%, transparent);
 }
 .r-contact a:hover { border-bottom-color: var(--bs-color-white); }
 

@@ -150,6 +150,43 @@ so consumers get the full set as `--bs-grade-*` variables.
 | `grade-partial` | `#C8902F` | partially enforced |
 | `grade-aspirational` | `#7E8C83` | aspirational / not yet enforced |
 
+## Token accessibility
+
+Token-level accessibility is a gated contract, not a vibe. The brand vendors the
+**Token Accessibility suite** from [`bounded-systems/conformance-kit`](https://github.com/bounded-systems/conformance-kit)
+(hash-pinned in `vendor/conformance-kit/`, PR #25), and one config —
+`tokens/token-a11y.json` — drives every member over the generated `tokens.css`:
+
+| Member | Checks | WCAG |
+| --- | --- | --- |
+| **palette** | CVD-safe contrast (deutan/protan/tritan), APCA, non-text | 1.4.3 / 1.4.11 |
+| **pairing** | derives fg×bg pairings from the brand CSS ∪ declared set (report-only superset) | — |
+| **typography** | body line-height ≥1.5, overridable spacing, min size, weight×size | 1.4.12 / 1.4.4 / 1.4.8 |
+| **target-size** | interactive-target tokens ≥24×24; ≥44 status | 2.5.8 AA / 2.5.5 AAA |
+| **opacity** | EFFECTIVE composited contrast of any translucent foreground | 1.4.3 / 1.4.11 |
+| **likeness** | near-duplicate hygiene + categorical distinctness (normal + CVD) | 1.4.1 |
+
+```bash
+npm run token-a11y         # verify the vendor hash-pin, then run the whole suite
+npm run token-a11y:check   # rebuild tokens.css first, then run (the CI entrypoint)
+npm run token-a11y:verify  # only verify the vendored suite against its hash-pin
+```
+
+Fail-closed (`exit 1`) on any gated-member failure. **No exemptions** — hairlines,
+dividers, and separators are declared `ui` and must clear 3:1; accessible for
+everyone. CI: `.github/workflows/token-a11y.yml`.
+
+### Interactive-target (control) tokens
+
+So every surface has an accessible pointer-target token to reach for (WCAG 2.5.8):
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `control-min-tap-target` | `24px` | SC 2.5.8 (AA) floor — apply as `min-width`/`min-height` on any control |
+| `control-sm` | `36px` | compact control (chips, dense toolbars) |
+| `control-md` | `44px` | default control — also meets 2.5.5 (AAA, 44px) |
+| `control-lg` | `52px` | prominent / primary control |
+
 ## Avatar usage
 
 - Upload **`avatar/avatar-forest-460.png`** as the GitHub org avatar (or the SVG
