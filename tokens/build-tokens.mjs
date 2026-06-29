@@ -16,12 +16,21 @@ const rgbToHex = (r) => "#" + r.map((n) => Math.round(n).toString(16).padStart(2
 const mix = (a, b, t) => { const A = hexToRgb(a), B = hexToRgb(b); return rgbToHex(A.map((x, i) => x * (1 - t) + B[i] * t)); };
 
 const fam = (v) => v.map((f) => (/\s/.test(f) ? `"${f}"` : f)).join(", ");
-const resolveRef = (s) =>
-  String(s).replace(/\{([^}]+)\}/g, (_, p) => {
-    let n = tokens;
-    for (const k of p.split(".")) n = n[k];
-    return Array.isArray(n.$value) ? fam(n.$value) : n.$value;
-  });
+// Resolve {group.key} references RECURSIVELY so the token layers compose: a semantic
+// token may reference a primitive (text-h1 → {primitive.font-size-46}), and a recipe may
+// reference that semantic token (text.h1.fontSize → {size.text-h1}). Values live only on
+// the base/primitive layer; every other layer references down to it.
+const resolveRef = (s) => {
+  let v = String(s);
+  for (let depth = 0; /\{[^}]+\}/.test(v) && depth < 10; depth++) {
+    v = v.replace(/\{([^}]+)\}/g, (_, p) => {
+      let n = tokens;
+      for (const k of p.split(".")) n = n[k];
+      return Array.isArray(n.$value) ? fam(n.$value) : n.$value;
+    });
+  }
+  return v;
+};
 
 function genCss(t) {
   // Collect every token as { name (clean, no prefix), value, syntax }. The clean name
@@ -33,10 +42,10 @@ function genCss(t) {
 
   for (const k in t.color) add(`color-${k}`, resolveRef(t.color[k].$value), "<color>");
   for (const k in t.font) if (!k.startsWith("$")) add(`font-${k}`, fam(t.font[k].$value), null); // families: no @property
-  for (const k in t.size) if (!k.startsWith("$")) add(k, t.size[k].$value, "<length>"); // keys carry their group (text-*, size-*)
-  for (const k in t.radius) if (!k.startsWith("$")) add(k, t.radius[k].$value, "<length>");
-  if (t.space) for (const k in t.space) if (!k.startsWith("$")) add(k, t.space[k].$value, "<length>");
-  if (t.control) for (const k in t.control) if (!k.startsWith("$")) add(`control-${k}`, t.control[k].$value, "<length>");
+  for (const k in t.size) if (!k.startsWith("$")) add(k, resolveRef(t.size[k].$value), "<length>"); // keys carry their group (text-*, size-*)
+  for (const k in t.radius) if (!k.startsWith("$")) add(k, resolveRef(t.radius[k].$value), "<length>");
+  if (t.space) for (const k in t.space) if (!k.startsWith("$")) add(k, resolveRef(t.space[k].$value), "<length>");
+  if (t.control) for (const k in t.control) if (!k.startsWith("$")) add(`control-${k}`, resolveRef(t.control[k].$value), "<length>");
   if (t.grade) {
     const ink = resolveRef(t.color.ink.$value), white = resolveRef(t.color.white.$value);
     for (const k in t.grade) {
