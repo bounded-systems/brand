@@ -94,10 +94,10 @@
     --text-body: 1rem;
     --text-lead: 1.125rem;
     --text-title: 1.125rem;
-    --text-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
-    --text-h2: clamp(1.375rem, 1.15rem + 1.1vw, 1.625rem);
-    --text-h1: clamp(1.875rem, 1.3rem + 2.9vw, 2.875rem);
-    --text-display: clamp(2.25rem, 1.5rem + 3.8vw, 3.25rem);
+    --text-h3: 1.5rem;
+    --text-h2: 1.625rem;
+    --text-h1: 2.875rem;
+    --text-display: 3.25rem;
     --size-readable: 40ch;
     --size-prose: 65ch;
     --size-card: 220px;
@@ -173,10 +173,10 @@
     --bs-text-body: 1rem;
     --bs-text-lead: 1.125rem;
     --bs-text-title: 1.125rem;
-    --bs-text-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
-    --bs-text-h2: clamp(1.375rem, 1.15rem + 1.1vw, 1.625rem);
-    --bs-text-h1: clamp(1.875rem, 1.3rem + 2.9vw, 2.875rem);
-    --bs-text-display: clamp(2.25rem, 1.5rem + 3.8vw, 3.25rem);
+    --bs-text-h3: 1.5rem;
+    --bs-text-h2: 1.625rem;
+    --bs-text-h1: 2.875rem;
+    --bs-text-display: 3.25rem;
     --bs-size-readable: 40ch;
     --bs-size-prose: 65ch;
     --bs-size-card: 220px;
@@ -226,14 +226,14 @@
   /* Text styles — composite recipes built from the tokens above. */
   .text-h1, .bs-text-h1 {
     font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(1.875rem, 1.3rem + 2.9vw, 2.875rem);
+    font-size: 2.875rem;
     font-weight: 600;
     line-height: 1.02;
     letter-spacing: -0.025em;
   }
   .text-h2, .bs-text-h2 {
     font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(1.375rem, 1.15rem + 1.1vw, 1.625rem);
+    font-size: 1.625rem;
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.02em;

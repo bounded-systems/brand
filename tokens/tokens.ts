@@ -54,10 +54,10 @@ export const tokens = {
     "text-body": "1rem", // Body — 1rem (16px root) so primary body clears the APCA size-aware comfort tier (Lc ≥90), and scales with the user's font-size preference.
     "text-lead": "1.125rem", // Lead paragraphs / large body (18px).
     "text-title": "1.125rem", // Card / section titles (18px).
-    "text-h3": "clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem)", // Sub-heading — fluid 20→24px.
-    "text-h2": "clamp(1.375rem, 1.15rem + 1.1vw, 1.625rem)", // Heading — fluid 22→26px (max = prior desktop).
-    "text-h1": "clamp(1.875rem, 1.3rem + 2.9vw, 2.875rem)", // Page heading — fluid 30→46px (max = prior desktop).
-    "text-display": "clamp(2.25rem, 1.5rem + 3.8vw, 3.25rem)", // Hero / display — fluid 36→52px.
+    "text-h3": "1.5rem", // Sub-heading (24px).
+    "text-h2": "1.625rem", // Heading (26px).
+    "text-h1": "2.875rem", // Page heading (46px).
+    "text-display": "3.25rem", // Hero / display (52px).
     "size-readable": "40ch", // Narrow measure — a single column of dense text.
     "size-prose": "65ch", // Comfortable reading measure (~65 characters) for body content.
     "size-card": "220px", // Min track width for an auto-fill card grid.
@@ -100,8 +100,8 @@ export const tokens = {
     aspirational: "#7e8c83", // Aspirational / not yet enforced
   },
   text: {
-    h1: {"fontFamily":["Space Grotesk","sans-serif"],"fontSize":"clamp(1.875rem, 1.3rem + 2.9vw, 2.875rem)","fontWeight":600,"lineHeight":1.02,"letterSpacing":"-0.025em"},
-    h2: {"fontFamily":["Space Grotesk","sans-serif"],"fontSize":"clamp(1.375rem, 1.15rem + 1.1vw, 1.625rem)","fontWeight":600,"lineHeight":1.1,"letterSpacing":"-0.02em"},
+    h1: {"fontFamily":["Space Grotesk","sans-serif"],"fontSize":"2.875rem","fontWeight":600,"lineHeight":1.02,"letterSpacing":"-0.025em"},
+    h2: {"fontFamily":["Space Grotesk","sans-serif"],"fontSize":"1.625rem","fontWeight":600,"lineHeight":1.1,"letterSpacing":"-0.02em"},
     title: {"fontFamily":["Space Grotesk","sans-serif"],"fontSize":"1.125rem","fontWeight":600,"lineHeight":1.3,"letterSpacing":"-0.01em"},
     body: {"fontFamily":["Space Grotesk","sans-serif"],"fontSize":"1rem","fontWeight":400,"lineHeight":1.5,"letterSpacing":"0"},
     label: {"fontFamily":["IBM Plex Mono","monospace"],"fontSize":"0.6875rem","fontWeight":500,"lineHeight":1,"letterSpacing":"0.14em","textTransform":"uppercase"}, // Slug / eyebrow: mono uppercase tracked label.
