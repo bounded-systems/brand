@@ -37,6 +37,10 @@
     { "name": "grade partial on-dark / on ink", "fg": "grade-partial-on-dark", "bg": "ink", "kind": "text" },
     { "name": "grade aspirational on-dark / on ink", "fg": "grade-aspirational-on-dark", "bg": "ink", "kind": "text" },
 
+    { "name": "grade enforced on-dark / on chip", "fg": "grade-enforced-on-dark", "bg": "grade-enforced-on-dark-bg", "kind": "text" },
+    { "name": "grade partial on-dark / on chip", "fg": "grade-partial-on-dark", "bg": "grade-partial-on-dark-bg", "kind": "text" },
+    { "name": "grade aspirational on-dark / on chip", "fg": "grade-aspirational-on-dark", "bg": "grade-aspirational-on-dark-bg", "kind": "text" },
+
     { "name": "divider / line on paper", "fg": "line", "bg": "paper", "kind": "ui" },
     { "name": "border / line on card", "fg": "line", "bg": "card", "kind": "ui" },
     { "name": "border / line on card-alt", "fg": "line", "bg": "card-alt", "kind": "ui" },

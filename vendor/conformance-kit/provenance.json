@@ -1,13 +1,19 @@
 {
   "source": "https://github.com/bounded-systems/conformance-kit",
-  "ref": "229e8698bd081ec472c5b6c83878b771afbae22d",
-  "commit": "229e8698bd081ec472c5b6c83878b771afbae22d",
-  "branch": "conformance/palette-gate",
-  "pr": "https://github.com/bounded-systems/conformance-kit/pull/19",
+  "ref": "97a27aacc7dd3298ed7fce3aeb64887950d63581",
+  "commit": "97a27aacc7dd3298ed7fce3aeb64887950d63581",
+  "branch": "main",
+  "pr": "https://github.com/bounded-systems/conformance-kit/pull/25",
   "fetched": "2026-06-29",
-  "note": "Vendored, hash-pinned copy of the palette gate from bounded-systems/conformance-kit (PR #19 — static CVD-safe / APCA / non-text contrast over design tokens). Mirrors the site-side vendor pattern (bdelanghe/site vendor/conformance-kit/provenance.json). Re-pin when PR #19 merges to main and is published. Verified against these hashes before use: `npm run palette:verify` (also runs in the palette CI workflow). Zero-dependency, pure/offline — no network, no browser.",
+  "note": "Vendored, hash-pinned copy of the WHOLE Token Accessibility suite from bounded-systems/conformance-kit main (PR #25 — typography / target-size / opacity-contrast / pairing / likeness + the unified ck-token-a11y runner, built on the palette gate from PR #19). Re-pinned from main, replacing the prior PR #19 palette-gate-only pin. Mirrors the site-side vendor pattern (bdelanghe/site vendor/conformance-kit/provenance.json). Verified against these hashes before use: `npm run token-a11y:verify` (also runs in the token-a11y CI workflow). Zero-dependency, pure/offline — no network, no browser. The members import shared colour-science / APCA / CIEDE2000 primitives from gates/palette-gate.mjs, so every member file must sit together in gates/.",
   "files": {
     "gates/palette-gate.mjs": "sha256:c0b4601a148ce445b256f69e0d32618691f364c1ba7804080aa84b9850da3c8c",
+    "gates/opacity-contrast-gate.mjs": "sha256:e086e9220e2a63a432a156dab59d7f73eda302ca907c70dc05d7f8b79f62503c",
+    "gates/target-size-gate.mjs": "sha256:086b87789e5e5cb143f07c163cf19fd2eb7a889497fb0b87bac1f4bc9855fda9",
+    "gates/likeness-gate.mjs": "sha256:b28bae04993564120efd44d17a0c7fdd218e580bf047bd16208d1a377b64d1c6",
+    "gates/pairing-extractor.mjs": "sha256:00fab44a9fa5dc05af24c69d8cfcb0ed2897ac9b21fd628f59fd4ad469464385",
+    "gates/typography-gate.mjs": "sha256:5fec620a22a939660027c2df259f1c51c8d8d29047f2141bfe975529617e66d2",
+    "gates/token-a11y.mjs": "sha256:44d6a9c1aa63c0557180a498809ad2c1c07e9759f104432eebf9ce53da4d8427",
     "LICENSE": "sha256:559e93c466421832cdcfe7a000d0c19cdb2cec9d24bfb9b41f7c5bd9d448f65e"
   }
 }
