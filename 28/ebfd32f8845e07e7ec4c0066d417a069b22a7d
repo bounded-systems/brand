@@ -1,0 +1,39 @@
+tokens/tokens.json
+  s_98e316d0b3248a::t_49c44e86026f5d 18-19,21
+  s_98e316d0b3248a::t_8f9aedc351bbe4 78-79
+  s_98e316d0b3248a::t_764afd535ce256 36
+  s_98e316d0b3248a::t_65bd61477ecc22 39
+  s_98e316d0b3248a::t_9106f7a3aff55d 10-11
+.github/workflows/palette.yml
+  s_98e316d0b3248a::t_76f3f713654ae4 1-42
+tools/palette.mjs
+  s_98e316d0b3248a::t_33abb7063af6a0 1-75
+tokens/palette.pairings.json
+  s_98e316d0b3248a::t_743b2c3d66676a 1-52
+package.json
+  s_98e316d0b3248a::t_4006cfb039f234 53-56
+tokens/tokens.css
+  s_98e316d0b3248a::t_04225ca45ec3ce 12,15,18-19,21,30,76
+vendor/conformance-kit/LICENSE
+  s_98e316d0b3248a::t_3610018bd671fe 1-21
+vendor/conformance-kit/gates/palette-gate.mjs
+  s_98e316d0b3248a::t_fc48707d387647 1-601
+vendor/conformance-kit/provenance.json
+  s_98e316d0b3248a::t_30c2ab3d1b5eb3 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "28ebfd32f8845e07e7ec4c0066d417a069b22a7d",
+  "prompts": {},
+  "sessions": {
+    "s_98e316d0b3248a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8db980ee-eb6b-4866-832b-f795cef7f33c",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Robert DeLanghe <1240090+bdelanghe@users.noreply.github.com>"
+    }
+  }
+}
