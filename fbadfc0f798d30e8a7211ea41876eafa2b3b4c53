@@ -1,0 +1,43 @@
+deno.json
+  s_98e316d0b3248a::t_94a79f7df4bcdb 1-6,8-41
+  s_98e316d0b3248a::t_32ed6d40d7e635 7
+package.json
+  s_98e316d0b3248a::t_49cf0ed6f0cc30 17,28
+  s_98e316d0b3248a::t_70b983fc814e7f 36,38,43-44,47
+tools/verify-versions.mjs
+  s_98e316d0b3248a::t_e2dadf8232dd75 1-30
+.github/workflows/publish.yml
+  s_98e316d0b3248a::t_e7788f418af506 4-9,17,20,28-30,32-34,36-39,41-51,55-72
+style-dictionary.config.mjs
+  s_98e316d0b3248a::t_022c80a5066738 12-15,17,20-24
+tools/build-tokens-ts.mjs
+  s_98e316d0b3248a::t_9c25eda922d5f8 1-32
+.github/workflows/tokens.yml
+  s_98e316d0b3248a::t_121cdc3643f870 8-11,17-20,31,34-37,40-41
+tools/build-tokens-dist.mjs
+  s_98e316d0b3248a::t_bee8016dbaab5e 34
+tools/sd-format-tokens-ts.mjs
+  s_98e316d0b3248a::t_902f332e1ac158 1-69
+tokens/manifest.schema.json
+  s_98e316d0b3248a::t_0a61d758f2a622 46
+package-lock.json
+  s_98e316d0b3248a::t_e63c8956e221b9 3,9
+tokens/tokens.ts
+  s_98e316d0b3248a::t_8cd74d4a421a17 1-90
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "fbadfc0f798d30e8a7211ea41876eafa2b3b4c53",
+  "prompts": {},
+  "sessions": {
+    "s_98e316d0b3248a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8db980ee-eb6b-4866-832b-f795cef7f33c",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Robert DeLanghe <1240090+bdelanghe@users.noreply.github.com>"
+    }
+  }
+}
