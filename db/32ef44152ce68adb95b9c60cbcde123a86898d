@@ -1,0 +1,26 @@
+tokens/tokens.json
+  s_71a0aecf45d82c::t_b3964564cc5135 82-88,91,93-94,100-109,112-128
+  s_71a0aecf45d82c::t_8cec138fbe600d 129
+tokens/build-tokens.mjs
+  s_71a0aecf45d82c::t_2bb3454a72807a 27-39,45-52,55-66,68-72,74-83,85
+.release/baobab-tokens.md
+  s_71a0aecf45d82c::t_b4ade35cc2c4a2 1-4
+tokens/tokens.css
+  s_71a0aecf45d82c::t_62c7aa332cf077 2-71,73-255
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "db32ef44152ce68adb95b9c60cbcde123a86898d",
+  "prompts": {},
+  "sessions": {
+    "s_71a0aecf45d82c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f6f6e806-c9db-459c-ba56-79aa27861998",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Robert DeLanghe <1240090+bdelanghe@users.noreply.github.com>"
+    }
+  }
+}
