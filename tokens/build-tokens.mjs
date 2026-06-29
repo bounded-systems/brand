@@ -24,53 +24,65 @@ const resolveRef = (s) =>
   });
 
 function genCss(t) {
-  const L = [];
-  L.push("/* AUTO-GENERATED from tokens.json by build-tokens.mjs — do not edit by hand. */");
-  L.push(":root {");
-  L.push("  /* color */");
-  for (const k in t.color) L.push(`  --bs-color-${k}: ${resolveRef(t.color[k].$value)};`);
-  L.push("  /* font family */");
-  for (const k in t.font) L.push(`  --bs-font-${k}: ${fam(t.font[k].$value)};`);
-  L.push("  /* size & radius */");
-  for (const k in t.size) L.push(`  --bs-${k}: ${t.size[k].$value};`);
-  for (const k in t.radius) L.push(`  --bs-${k}: ${t.radius[k].$value};`);
-  if (t.control) {
-    L.push("  /* interactive-target / control sizing (WCAG 2.5.8 AA ≥24px; 2.5.5 AAA ≥44px) */");
-    for (const k in t.control) { if (k.startsWith("$")) continue; L.push(`  --bs-control-${k}: ${t.control[k].$value};`); }
-  }
+  // Collect every token as { name (clean, no prefix), value, syntax }. The clean name
+  // is canonical; a legacy --bs-<name> alias (the historical Bootstrap-flavoured prefix)
+  // is emitted alongside during the migration so existing consumers + the conformance
+  // gates keep resolving. `syntax` drives the @property type registration.
+  const TOK = [];
+  const add = (name, value, syntax) => TOK.push({ name, value, syntax });
+
+  for (const k in t.color) add(`color-${k}`, resolveRef(t.color[k].$value), "<color>");
+  for (const k in t.font) if (!k.startsWith("$")) add(`font-${k}`, fam(t.font[k].$value), null); // families: no @property
+  for (const k in t.size) if (!k.startsWith("$")) add(k, t.size[k].$value, "<length>"); // keys carry their group (text-*, size-*)
+  for (const k in t.radius) if (!k.startsWith("$")) add(k, t.radius[k].$value, "<length>");
+  if (t.space) for (const k in t.space) if (!k.startsWith("$")) add(k, t.space[k].$value, "<length>");
+  if (t.control) for (const k in t.control) if (!k.startsWith("$")) add(`control-${k}`, t.control[k].$value, "<length>");
   if (t.grade) {
-    L.push("  /* grade — base + derived bg/fg tints (deterministic) */");
     const ink = resolveRef(t.color.ink.$value), white = resolveRef(t.color.white.$value);
     for (const k in t.grade) {
       if (k.startsWith("$")) continue;
       const base = t.grade[k].$value;
-      L.push(`  --bs-grade-${k}: ${base};`);
-      L.push(`  --bs-grade-${k}-bg: ${mix(base, white, 0.85)};`);
-      L.push(`  --bs-grade-${k}-fg: ${mix(base, ink, 0.55)};`);
-      L.push(`  --bs-grade-${k}-on-dark: ${mix(base, white, 0.5)};`);
-      // Status chip on the dark panel. SOLID (baked 14% of the base over ink), not a
-      // `color-mix(… transparent)` translucent fill: a translucent layer's EFFECTIVE
-      // colour depends on an unknown backdrop, so its composited contrast can't be
-      // guaranteed statically — the opacity-contrast gate flagged the 14% tint at
-      // ~1.27:1. Baked solid over ink, the chip is deterministic and the on-dark
-      // status text composites against a known surface (≥4.5:1, AA text).
-      L.push(`  --bs-grade-${k}-on-dark-bg: ${mix(base, ink, 0.86)};`);
+      add(`grade-${k}`, base, "<color>");
+      add(`grade-${k}-bg`, mix(base, white, 0.85), "<color>");
+      add(`grade-${k}-fg`, mix(base, ink, 0.55), "<color>");
+      add(`grade-${k}-on-dark`, mix(base, white, 0.5), "<color>");
+      // Status chip on the dark panel: SOLID (baked 14% of the base over ink), not a
+      // translucent color-mix — a translucent layer's EFFECTIVE colour depends on an
+      // unknown backdrop, so its composited contrast can't be guaranteed statically.
+      add(`grade-${k}-on-dark-bg`, mix(base, ink, 0.86), "<color>");
     }
   }
-  L.push("}");
+
+  const L = [];
+  L.push("/* AUTO-GENERATED from tokens.json by build-tokens.mjs — do not edit by hand. */");
+  L.push("/* baobab token structure (the design-system shape); these are brand's pinned values. */");
+  L.push("@layer baobab {");
+  // @property — typed, inheriting custom properties (graceful: ignored where unsupported).
+  for (const { name, value, syntax } of TOK)
+    if (syntax) L.push(`  @property --${name} { syntax: "${syntax}"; inherits: true; initial-value: ${value}; }`);
   L.push("");
-  L.push("/* Text styles — composite recipes built from the tokens above. */");
+  L.push("  :root {");
+  L.push("    /* baobab tokens — clean semantic names, no defensive prefix (the @layer is the namespace) */");
+  for (const { name, value } of TOK) L.push(`    --${name}: ${value};`);
+  L.push("");
+  L.push("    /* legacy --bs-* aliases — transition only; migrate consumers off these, then drop */");
+  for (const { name, value } of TOK) L.push(`    --bs-${name}: ${value};`);
+  L.push("  }");
+  L.push("");
+  L.push("  /* Text styles — composite recipes built from the tokens above. */");
   for (const k in t.text) {
-    const v = t.text[k].$value;
-    L.push(`.bs-text-${k} {`);
-    L.push(`  font-family: ${resolveRef(v.fontFamily)};`);
-    L.push(`  font-size: ${resolveRef(v.fontSize)};`);
-    if (v.fontWeight != null) L.push(`  font-weight: ${v.fontWeight};`);
-    if (v.lineHeight != null) L.push(`  line-height: ${v.lineHeight};`);
-    if (v.letterSpacing != null) L.push(`  letter-spacing: ${v.letterSpacing};`);
-    if (v.textTransform) L.push(`  text-transform: ${v.textTransform};`);
-    L.push("}");
+    const v = t.text[k].$value, decls = [];
+    decls.push(`    font-family: ${resolveRef(v.fontFamily)};`);
+    decls.push(`    font-size: ${resolveRef(v.fontSize)};`);
+    if (v.fontWeight != null) decls.push(`    font-weight: ${v.fontWeight};`);
+    if (v.lineHeight != null) decls.push(`    line-height: ${v.lineHeight};`);
+    if (v.letterSpacing != null) decls.push(`    letter-spacing: ${v.letterSpacing};`);
+    if (v.textTransform) decls.push(`    text-transform: ${v.textTransform};`);
+    L.push(`  .text-${k}, .bs-text-${k} {`); // clean + legacy class
+    L.push(...decls);
+    L.push("  }");
   }
+  L.push("}");
   return L.join("\n") + "\n";
 }
 
