@@ -43,7 +43,7 @@
           "mediaType": { "type": "string", "description": "IANA media type served at this path." },
           "format": {
             "type": "string",
-            "description": "Logical format key (dtcg, css-variables, scss, js, json-flat, swift, android-xml)."
+            "description": "Logical format key (dtcg, css-variables, typescript, scss, js, json-flat, swift, android-xml)."
           },
           "bytes": { "type": "integer", "minimum": 0 },
           "sha256": {

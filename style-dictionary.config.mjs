@@ -9,9 +9,19 @@
 // intact in the scss / js / json outputs.
 const noTypography = (token) => token.path[0] !== "text";
 
+// Typed TS module — the idiomatic JSR default export. Lives in tokens/ (a
+// committed, drift-checked source artifact), not dist/ (regenerated, gitignored).
+import tsFormat from "./tools/sd-format-tokens-ts.mjs";
+
 export default {
+  hooks: { formats: { [tsFormat.name]: tsFormat.format } },
   source: ["tokens/tokens.json"],
   platforms: {
+    ts: {
+      transformGroup: "js",
+      buildPath: "tokens/",
+      files: [{ destination: "tokens.ts", format: tsFormat.name }],
+    },
     scss: {
       transformGroup: "scss",
       buildPath: "dist/",
