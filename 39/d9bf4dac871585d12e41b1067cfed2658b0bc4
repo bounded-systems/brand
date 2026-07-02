@@ -1,0 +1,24 @@
+.release/publish-identity-assets.md
+  s_2a469b60e68f47::t_236c783d0a74d6 1-8
+LICENSE
+  s_2a469b60e68f47::t_b1d2d3b7ea0c9f 25-33
+package.json
+  s_2a469b60e68f47::t_c46be239c9a9f0 4
+  s_2a469b60e68f47::t_10b1b9122c5ef8 19-25,34-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "39d9bf4dac871585d12e41b1067cfed2658b0bc4",
+  "prompts": {},
+  "sessions": {
+    "s_2a469b60e68f47": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1f6e6773-0f38-4e61-9244-8ceacfa5b893",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": null
+    }
+  }
+}
