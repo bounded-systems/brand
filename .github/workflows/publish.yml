@@ -47,12 +47,15 @@ jobs:
         with:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
+      # Trusted Publishing (OIDC) requires npm CLI >=11.5.1 — pin explicitly rather
+      # than trust whatever version Node 22 happens to bundle.
+      - run: npm install -g npm@latest
       - run: npm ci # install devDeps (style-dictionary) so prepack's build can run
       - name: Publish to npm
         # prepack (build:css + build:ts) regenerates tokens.css + tokens.ts into the tarball.
+        # No NODE_AUTH_TOKEN — npm's OIDC Trusted Publisher (configured on npmjs.com
+        # for this exact repo+workflow) authenticates via the job's id-token: write.
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   jsr:
     needs: verify
