@@ -19,6 +19,17 @@ export const tokens = {
     "clay-100": "#f9ede9", // Clay wash (lightened so clay-on-clay-tint text clears 4.5:1 on all CVD variants — deuteranopia was 4.22:1 at #F2DED8)
     "amber-600": "#8c5818", // Amber — text AA + CVD-safe (≥4.5:1 under deuteranopia/protanopia/tritanopia on paper & amber wash)
     "amber-100": "#f3e8d6", // Amber wash
+    "font-size-10": "0.625rem",
+    "font-size-11": "0.6875rem",
+    "font-size-12": "0.75rem",
+    "font-size-13": "0.8125rem",
+    "font-size-14": "0.875rem",
+    "font-size-16": "1rem",
+    "font-size-18": "1.125rem",
+    "font-size-24": "1.5rem",
+    "font-size-26": "1.625rem",
+    "font-size-46": "2.875rem",
+    "font-size-52": "3.25rem",
   },
   color: {
     forest: "#0c5a42", // Primary brand fill
@@ -51,7 +62,7 @@ export const tokens = {
     "text-caption": "0.75rem", // Captions, fine print (12px).
     "text-small": "0.8125rem", // Small / dense UI text (13px).
     "text-meta": "0.875rem", // Secondary / metadata text (14px).
-    "text-body": "1rem", // Body — 1rem (16px root) so primary body clears the APCA size-aware comfort tier (Lc ≥90), and scales with the user's font-size preference.
+    "text-body": "1rem", // Body — 16px root so primary body clears the APCA size-aware comfort tier (Lc ≥90), and scales with the user's font-size preference.
     "text-lead": "1.125rem", // Lead paragraphs / large body (18px).
     "text-title": "1.125rem", // Card / section titles (18px).
     "text-h3": "1.5rem", // Sub-heading (24px).
