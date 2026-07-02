@@ -6,3 +6,7 @@ dist/
 # produced fresh in CI). The HTML/MD/JSON-LD are generated *and* committed
 # (drift-gated, like tokens.css); the PDF is not.
 resume/resume.pdf
+
+# Local release artifacts (CI regenerates + keyless-signs them; never committed).
+*.intoto.json
+*.intoto.sigstore.json
