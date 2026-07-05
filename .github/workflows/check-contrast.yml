@@ -1,0 +1,32 @@
+name: check-contrast
+
+# This pinning's own contrast contract (tokens/contrast.contract.json) against its own
+# tokens — the generic checker + glue both live in bounded-systems/baobab, not here.
+# Dogfoods baobab's checkContrast() against the reference pinning baobab's own README
+# names it after (structure vs. pinning: baobab is the shape, this is the values), so a
+# regression in baobab's own contrast math is caught against real tokens, not just its
+# own test fixtures. Sits alongside the existing (more comprehensive) vendored
+# token-a11y suite (token-a11y.yml) — that suite adds CVD/APCA/non-text/typography/
+# likeness on top of plain WCAG ratio; this job specifically exercises baobab's own
+# published API.
+on:
+  push:
+    paths:
+      - "tokens/tokens.json"
+      - "tokens/contrast.contract.json"
+      - ".github/workflows/check-contrast.yml"
+  pull_request:
+    paths:
+      - "tokens/tokens.json"
+      - "tokens/contrast.contract.json"
+      - ".github/workflows/check-contrast.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check-contrast:
+    uses: bounded-systems/baobab/.github/workflows/check-contrast.yml@v0.2.1
+    with:
+      tokens-path: tokens/tokens.json
+      contract-path: tokens/contrast.contract.json
