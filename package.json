@@ -71,6 +71,6 @@
     "token-a11y:verify": "node tools/token-a11y.mjs --verify"
   },
   "devDependencies": {
-    "style-dictionary": "^4.3.0"
+    "style-dictionary": "^5.5.0"
   }
 }
