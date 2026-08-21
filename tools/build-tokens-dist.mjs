@@ -30,7 +30,7 @@ const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
 // included when a prior `build:sd` produced them. Order is the manifest order.
 const ARTIFACTS = [
   { out: "tokens.json", src: "tokens/tokens.json", required: true, mediaType: "application/design-tokens+json", format: "dtcg", description: "Canonical W3C DTCG source." },
-  { out: "tokens.css", src: "tokens/tokens.css", required: true, mediaType: "text/css", format: "css-variables", description: "CSS custom properties + .bs-text-* composite classes (the curated web artifact)." },
+  { out: "tokens.css", src: "tokens/tokens.css", required: true, mediaType: "text/css", format: "css-variables", description: "CSS custom properties + .bnd-text-* composite classes (the curated web artifact)." },
   { out: "tokens.ts", src: "tokens/tokens.ts", required: false, mediaType: "text/typescript", format: "typescript", description: "Typed TS module — `export const tokens = {…} as const` (the JSR default export)." },
   { out: "tokens.scss", src: "dist/tokens.scss", required: false, mediaType: "text/x-scss", format: "scss", description: "SCSS variables." },
   { out: "tokens.js", src: "dist/tokens.js", required: false, mediaType: "text/javascript", format: "js", description: "ES6 token constants." },

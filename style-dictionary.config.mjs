@@ -2,7 +2,7 @@
 //   npm run build:sd   → writes dist/
 //
 // tokens.css stays the curated WEB artifact (build-tokens.mjs owns it, incl. the
-// composite .bs-text-* classes). Style Dictionary covers everything else.
+// composite .bnd-text-* classes). Style Dictionary covers everything else.
 //
 // Composite typography tokens (the `text` group) are excluded from the flat
 // native platforms (iOS/Android) where a single value is expected; they survive

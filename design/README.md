@@ -2,14 +2,14 @@
 
 Self-referential preview cards for **Bounded Systems** — each one renders the
 tokens *using* the tokens. The Foundations cards read `../tokens/tokens.css` at
-runtime (custom properties + `.bs-text-*` rules) and display what they find, so
+runtime (custom properties + `.bnd-text-*` rules) and display what they find, so
 they can't drift from the source of truth; the Brand cards embed the SVG assets.
 
 | File | Card | Group | Source |
 | --- | --- | --- | --- |
-| `colors.html` | Color | Foundations | live `--bs-color-*` |
-| `type.html` | Type | Foundations | live `.bs-text-*` + computed spec |
-| `radius.html` | Radius | Foundations | live `--bs-radius-*` |
+| `colors.html` | Color | Foundations | live `--bnd-color-*` |
+| `type.html` | Type | Foundations | live `.bnd-text-*` + computed spec |
+| `radius.html` | Radius | Foundations | live `--bnd-radius-*` |
 | `mark.html` | Mark | Brand | `mark/*.svg` |
 | `avatar.html` | Avatar | Brand | `avatar/*.svg` |
 | `lockup.html` | Lockup | Brand | `lockup/*.svg` |

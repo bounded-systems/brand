@@ -11,11 +11,11 @@
   <link rel="stylesheet" href="./preview.css">
 </head>
 <body>
-  <header class="bs-head">
+  <header class="bnd-head">
     <p class="eyebrow">Foundations</p>
-    <h1 class="bs-text-h2">Type</h1>
+    <h1 class="bnd-text-h2">Type</h1>
     <p>The composite <code>text.*</code> styles (mono label, display headings). Each row
-       is rendered with its real <code>.bs-text-*</code> class and the spec is read back
+       is rendered with its real <code>.bnd-text-*</code> class and the spec is read back
        from the computed style — what you read is what the token produces.</p>
   </header>
   <div class="ramp" id="ramp"></div>
@@ -23,11 +23,11 @@
 
   <script>
     var SAMPLES = {
-      "bs-text-h1": "Bounded Systems",
-      "bs-text-h2": "Bounded authority for AI agents",
-      "bs-text-title": "Drawn at the door",
-      "bs-text-body": "A room, a door, an agent — the capability model made physical.",
-      "bs-text-label": "Bounded Systems · Brand"
+      "bnd-text-h1": "Bounded Systems",
+      "bnd-text-h2": "Bounded authority for AI agents",
+      "bnd-text-title": "Drawn at the door",
+      "bnd-text-body": "A room, a door, an agent — the capability model made physical.",
+      "bnd-text-label": "Bounded Systems · Brand"
     };
     function textClasses() {
       var set = [];
@@ -37,7 +37,7 @@
         if (!rules) continue;
         for (var i = 0; i < rules.length; i++) {
           var sel = rules[i].selectorText;
-          var m = sel && sel.match(/^\.(bs-text-[\w-]+)$/);
+          var m = sel && sel.match(/^\.(bnd-text-[\w-]+)$/);
           if (m && set.indexOf(m[1]) === -1) set.push(m[1]);
         }
       }

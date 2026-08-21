@@ -74,7 +74,7 @@ Open `resume.html` and print (⌘P / Ctrl-P):
 
 ```
 ../css/fonts.css     self-hosted Space Grotesk + IBM Plex Mono (no CDN)
-../tokens/tokens.css design tokens — every colour is var(--bs-color-*)
+../tokens/tokens.css design tokens — every colour is var(--bnd-color-*)
 ../css/base.css      resets + element defaults
 ./resume.css         this surface's layout + print rules
 ```
