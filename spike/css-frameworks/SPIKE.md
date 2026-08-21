@@ -30,7 +30,7 @@ gate enforces the token vocabulary. So:
 
 - **Static surfaces (now):** adopt nothing. Most deterministic option.
 - **A real component app:** **StyleX** — determinism as a contract, matches the Zod/invariant mindset (accept JS/React authoring), **or Vanilla Extract** if framework-agnostic + zero-runtime matters more than call-site merge.
-- The brand **tokens are the durable, framework-agnostic asset** (`tokens.flat.json`); `tokens.stylex.mjs` / `tokens.vars.css.ts` bind each framework to the existing `--bs-*` layer.
+- The brand **tokens are the durable, framework-agnostic asset** (`tokens.flat.json`); `tokens.stylex.mjs` / `tokens.vars.css.ts` bind each framework to the existing `--bnd-*` layer.
 
 ## The discriminating test
 

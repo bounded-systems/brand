@@ -48,11 +48,11 @@ const rawHex = [...css.matchAll(/#[0-9a-fA-F]{3,8}\b/g)].map((m) => m[0]);
 assert(rawHex.length === 0, "no raw hex in resume.css — every colour is a token", rawHex.join(", "));
 
 // ── 3. token integrity: every var() ref is defined ────────────────────────
-const definedBs = new Set([...tokensCss.matchAll(/(--bs-[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
+const definedBs = new Set([...tokensCss.matchAll(/(--bnd-[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
 const definedLocal = new Set([...css.matchAll(/(--r-[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
 const usedVars = [...css.matchAll(/var\(\s*(--[a-z0-9-]+)\s*\)/g)].map((m) => m[1]);
 const dangling = [...new Set(usedVars)].filter((v) =>
-  v.startsWith("--bs-") ? !definedBs.has(v) : v.startsWith("--r-") ? !definedLocal.has(v) : true
+  v.startsWith("--bnd-") ? !definedBs.has(v) : v.startsWith("--r-") ? !definedLocal.has(v) : true
 );
 assert(usedVars.length > 0, "resume.css references design tokens", "no var() usage found");
 assert(dangling.length === 0, "no dangling token references", dangling.join(", "));

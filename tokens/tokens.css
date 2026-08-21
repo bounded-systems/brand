@@ -143,116 +143,118 @@
     --grade-aspirational-on-dark: #BFC6C1;
     --grade-aspirational-on-dark-bg: #25312A;
 
-    /* legacy --bs-* aliases — transition only; migrate consumers off these, then drop */
-    --bs-color-forest: #0C5A42;
-    --bs-color-forest-deep: #073D2C;
-    --bs-color-paper: #EDEAE1;
-    --bs-color-card: #FFFFFF;
-    --bs-color-card-alt: #EDEAE1;
-    --bs-color-ink: #16221C;
-    --bs-color-ink-soft: #5C6B63;
-    --bs-color-ink-mono: #5C6B63;
-    --bs-color-line: #888374;
-    --bs-color-white: #FFFFFF;
-    --bs-color-forest-tint: #E2EBE6;
-    --bs-color-forest-soft: #5F8971;
-    --bs-color-on-forest: #D2E0D8;
-    --bs-color-on-forest-soft: #BBD1CA;
-    --bs-color-on-forest-line: #58B196;
-    --bs-color-clay: #9F3E2B;
-    --bs-color-clay-tint: #F9EDE9;
-    --bs-color-amber: #8C5818;
-    --bs-color-amber-tint: #F3E8D6;
-    --bs-font-display: "Space Grotesk", sans-serif;
-    --bs-font-mono: "IBM Plex Mono", monospace;
-    --bs-text-micro: 0.625rem;
-    --bs-text-label: 0.6875rem;
-    --bs-text-caption: 0.75rem;
-    --bs-text-small: 0.8125rem;
-    --bs-text-meta: 0.875rem;
-    --bs-text-body: 1rem;
-    --bs-text-lead: 1.125rem;
-    --bs-text-title: 1.125rem;
-    --bs-text-h3: 1.5rem;
-    --bs-text-h2: 1.625rem;
-    --bs-text-h1: 2.875rem;
-    --bs-text-display: 3.25rem;
-    --bs-size-readable: 40ch;
-    --bs-size-prose: 65ch;
-    --bs-size-card: 220px;
-    --bs-size-card-sm: 160px;
-    --bs-size-container: 1100px;
-    --bs-size-wide: 1280px;
-    --bs-radius-sm: 8px;
-    --bs-radius-md: 12px;
-    --bs-radius-lg: 18px;
-    --bs-radius-pill: 999px;
-    --bs-space-0: 0;
-    --bs-space-px: 1px;
-    --bs-space-1: 4px;
-    --bs-space-2: 8px;
-    --bs-space-3: 12px;
-    --bs-space-4: 16px;
-    --bs-space-5: 20px;
-    --bs-space-6: 24px;
-    --bs-space-7: 28px;
-    --bs-space-8: 32px;
-    --bs-space-10: 40px;
-    --bs-space-12: 48px;
-    --bs-space-16: 64px;
-    --bs-space-20: 80px;
-    --bs-space-24: 96px;
-    --bs-control-min-tap-target: 24px;
-    --bs-control-sm: 36px;
-    --bs-control-md: 44px;
-    --bs-control-lg: 52px;
-    --bs-grade-enforced: #3FB984;
-    --bs-grade-enforced-bg: #E2F5ED;
-    --bs-grade-enforced-fg: #28664B;
-    --bs-grade-enforced-on-dark: #9FDCC2;
-    --bs-grade-enforced-on-dark-bg: #1C372B;
-    --bs-grade-partial: #C8902F;
-    --bs-grade-partial-bg: #F7EEE0;
-    --bs-grade-partial-fg: #665425;
-    --bs-grade-partial-on-dark: #E4C897;
-    --bs-grade-partial-on-dark-bg: #2F311F;
-    --bs-grade-aspirational: #7E8C83;
-    --bs-grade-aspirational-bg: #ECEEEC;
-    --bs-grade-aspirational-fg: #45524A;
-    --bs-grade-aspirational-on-dark: #BFC6C1;
-    --bs-grade-aspirational-on-dark-bg: #25312A;
+    /* Legacy --bnd-* aliases — transition only; migrate consumers off these, then drop.
+       Renamed from the Bootstrap-flavoured prefix in 2.0.0 (it collided with Bootstrap 5's
+       own custom-property namespace). The destination is unchanged: the clean names above. */
+    --bnd-color-forest: #0C5A42;
+    --bnd-color-forest-deep: #073D2C;
+    --bnd-color-paper: #EDEAE1;
+    --bnd-color-card: #FFFFFF;
+    --bnd-color-card-alt: #EDEAE1;
+    --bnd-color-ink: #16221C;
+    --bnd-color-ink-soft: #5C6B63;
+    --bnd-color-ink-mono: #5C6B63;
+    --bnd-color-line: #888374;
+    --bnd-color-white: #FFFFFF;
+    --bnd-color-forest-tint: #E2EBE6;
+    --bnd-color-forest-soft: #5F8971;
+    --bnd-color-on-forest: #D2E0D8;
+    --bnd-color-on-forest-soft: #BBD1CA;
+    --bnd-color-on-forest-line: #58B196;
+    --bnd-color-clay: #9F3E2B;
+    --bnd-color-clay-tint: #F9EDE9;
+    --bnd-color-amber: #8C5818;
+    --bnd-color-amber-tint: #F3E8D6;
+    --bnd-font-display: "Space Grotesk", sans-serif;
+    --bnd-font-mono: "IBM Plex Mono", monospace;
+    --bnd-text-micro: 0.625rem;
+    --bnd-text-label: 0.6875rem;
+    --bnd-text-caption: 0.75rem;
+    --bnd-text-small: 0.8125rem;
+    --bnd-text-meta: 0.875rem;
+    --bnd-text-body: 1rem;
+    --bnd-text-lead: 1.125rem;
+    --bnd-text-title: 1.125rem;
+    --bnd-text-h3: 1.5rem;
+    --bnd-text-h2: 1.625rem;
+    --bnd-text-h1: 2.875rem;
+    --bnd-text-display: 3.25rem;
+    --bnd-size-readable: 40ch;
+    --bnd-size-prose: 65ch;
+    --bnd-size-card: 220px;
+    --bnd-size-card-sm: 160px;
+    --bnd-size-container: 1100px;
+    --bnd-size-wide: 1280px;
+    --bnd-radius-sm: 8px;
+    --bnd-radius-md: 12px;
+    --bnd-radius-lg: 18px;
+    --bnd-radius-pill: 999px;
+    --bnd-space-0: 0;
+    --bnd-space-px: 1px;
+    --bnd-space-1: 4px;
+    --bnd-space-2: 8px;
+    --bnd-space-3: 12px;
+    --bnd-space-4: 16px;
+    --bnd-space-5: 20px;
+    --bnd-space-6: 24px;
+    --bnd-space-7: 28px;
+    --bnd-space-8: 32px;
+    --bnd-space-10: 40px;
+    --bnd-space-12: 48px;
+    --bnd-space-16: 64px;
+    --bnd-space-20: 80px;
+    --bnd-space-24: 96px;
+    --bnd-control-min-tap-target: 24px;
+    --bnd-control-sm: 36px;
+    --bnd-control-md: 44px;
+    --bnd-control-lg: 52px;
+    --bnd-grade-enforced: #3FB984;
+    --bnd-grade-enforced-bg: #E2F5ED;
+    --bnd-grade-enforced-fg: #28664B;
+    --bnd-grade-enforced-on-dark: #9FDCC2;
+    --bnd-grade-enforced-on-dark-bg: #1C372B;
+    --bnd-grade-partial: #C8902F;
+    --bnd-grade-partial-bg: #F7EEE0;
+    --bnd-grade-partial-fg: #665425;
+    --bnd-grade-partial-on-dark: #E4C897;
+    --bnd-grade-partial-on-dark-bg: #2F311F;
+    --bnd-grade-aspirational: #7E8C83;
+    --bnd-grade-aspirational-bg: #ECEEEC;
+    --bnd-grade-aspirational-fg: #45524A;
+    --bnd-grade-aspirational-on-dark: #BFC6C1;
+    --bnd-grade-aspirational-on-dark-bg: #25312A;
   }
 
   /* Text styles — composite recipes built from the tokens above. */
-  .text-h1, .bs-text-h1 {
+  .text-h1, .bnd-text-h1 {
     font-family: "Space Grotesk", sans-serif;
     font-size: 2.875rem;
     font-weight: 600;
     line-height: 1.02;
     letter-spacing: -0.025em;
   }
-  .text-h2, .bs-text-h2 {
+  .text-h2, .bnd-text-h2 {
     font-family: "Space Grotesk", sans-serif;
     font-size: 1.625rem;
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.02em;
   }
-  .text-title, .bs-text-title {
+  .text-title, .bnd-text-title {
     font-family: "Space Grotesk", sans-serif;
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.3;
     letter-spacing: -0.01em;
   }
-  .text-body, .bs-text-body {
+  .text-body, .bnd-text-body {
     font-family: "Space Grotesk", sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
   }
-  .text-label, .bs-text-label {
+  .text-label, .bnd-text-label {
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.6875rem;
     font-weight: 500;

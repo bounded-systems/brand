@@ -17,7 +17,7 @@ const dirs = args.filter((a) => !a.startsWith("--"));
 // token hex values from the generated CSS (skip color-mix/non-hex)
 const css = await readFile(join(brandRoot, "tokens", "tokens.css"), "utf8");
 const tok = {};
-for (const m of css.matchAll(/(--bs-[a-z0-9-]+):\s*(#[0-9A-Fa-f]{3,6})\s*;/g)) tok[m[1]] = m[2];
+for (const m of css.matchAll(/(--bnd-[a-z0-9-]+):\s*(#[0-9A-Fa-f]{3,6})\s*;/g)) tok[m[1]] = m[2];
 
 const lum = (hex) => {
   let h = hex.replace("#", ""); if (h.length === 3) h = [...h].map((c) => c + c).join("");
@@ -28,18 +28,18 @@ const ratio = (a, b) => { const L1 = lum(a), L2 = lum(b), hi = Math.max(L1, L2),
 
 // semantic text-on-surface pairs (label, fg token, bg token, min ratio)
 const PAIRS = [
-  ["ink on paper", "--bs-color-ink", "--bs-color-paper", 4.5],
-  ["ink on card", "--bs-color-ink", "--bs-color-card", 4.5],
-  ["ink-soft on paper", "--bs-color-ink-soft", "--bs-color-paper", 4.5],
-  ["ink-mono on paper", "--bs-color-ink-mono", "--bs-color-paper", 4.5],
-  ["white on forest", "--bs-color-white", "--bs-color-forest", 4.5],
-  ["white on forest-deep", "--bs-color-white", "--bs-color-forest-deep", 4.5],
-  ["grade-enforced fg/bg", "--bs-grade-enforced-fg", "--bs-grade-enforced-bg", 4.5],
-  ["grade-partial fg/bg", "--bs-grade-partial-fg", "--bs-grade-partial-bg", 4.5],
-  ["grade-aspirational fg/bg", "--bs-grade-aspirational-fg", "--bs-grade-aspirational-bg", 4.5],
-  ["grade-enforced on-dark/ink", "--bs-grade-enforced-on-dark", "--bs-color-ink", 4.5],
-  ["grade-partial on-dark/ink", "--bs-grade-partial-on-dark", "--bs-color-ink", 4.5],
-  ["grade-aspirational on-dark/ink", "--bs-grade-aspirational-on-dark", "--bs-color-ink", 4.5],
+  ["ink on paper", "--bnd-color-ink", "--bnd-color-paper", 4.5],
+  ["ink on card", "--bnd-color-ink", "--bnd-color-card", 4.5],
+  ["ink-soft on paper", "--bnd-color-ink-soft", "--bnd-color-paper", 4.5],
+  ["ink-mono on paper", "--bnd-color-ink-mono", "--bnd-color-paper", 4.5],
+  ["white on forest", "--bnd-color-white", "--bnd-color-forest", 4.5],
+  ["white on forest-deep", "--bnd-color-white", "--bnd-color-forest-deep", 4.5],
+  ["grade-enforced fg/bg", "--bnd-grade-enforced-fg", "--bnd-grade-enforced-bg", 4.5],
+  ["grade-partial fg/bg", "--bnd-grade-partial-fg", "--bnd-grade-partial-bg", 4.5],
+  ["grade-aspirational fg/bg", "--bnd-grade-aspirational-fg", "--bnd-grade-aspirational-bg", 4.5],
+  ["grade-enforced on-dark/ink", "--bnd-grade-enforced-on-dark", "--bnd-color-ink", 4.5],
+  ["grade-partial on-dark/ink", "--bnd-grade-partial-on-dark", "--bnd-color-ink", 4.5],
+  ["grade-aspirational on-dark/ink", "--bnd-grade-aspirational-on-dark", "--bnd-color-ink", 4.5],
 ];
 const contrast = PAIRS.map(([label, fg, bg, min]) => {
   if (!tok[fg] || !tok[bg]) return { label, missing: true };

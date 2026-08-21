@@ -31,18 +31,18 @@ const surfaceArgs = args.filter((a, i) => !a.startsWith("--") && i !== compIdx +
 // ---- the contract: parse the generated tokens.css (authoritative var→value) ----
 const tokensCssPath = join(brandRoot, "tokens", "tokens.css");
 const tokensCss = await readFile(tokensCssPath, "utf8");
-const cssVarToValue = new Map(); // --bs-color-forest → #0c5a42
-for (const m of tokensCss.matchAll(/(--bs-[a-z0-9-]+)\s*:\s*([^;]+);/g)) {
+const cssVarToValue = new Map(); // --bnd-color-forest → #0c5a42
+for (const m of tokensCss.matchAll(/(--bnd-[a-z0-9-]+)\s*:\s*([^;]+);/g)) {
   cssVarToValue.set(m[1], m[2].trim());
 }
-const valueToVar = new Map(); // normalized value → --bs-* (reverse lookup)
+const valueToVar = new Map(); // normalized value → --bnd-* (reverse lookup)
 for (const [v, val] of cssVarToValue) {
   const norm = val.toLowerCase().replace(/\s+/g, " ").trim();
   if (!valueToVar.has(norm)) valueToVar.set(norm, v);
   if (/^#[0-9a-f]+$/i.test(norm)) valueToVar.set(norm, v); // hex wins
 }
 const tokenHexes = new Set([...cssVarToValue.values()].filter((v) => /^#[0-9a-f]{3,8}$/i.test(v.trim())).map((v) => v.toLowerCase().trim()));
-const recipeClasses = [...tokensCss.matchAll(/^\.(bs-[a-z0-9-]+)\s*\{/gm)].map((m) => m[1]);
+const recipeClasses = [...tokensCss.matchAll(/^\.(bnd-[a-z0-9-]+)\s*\{/gm)].map((m) => m[1]);
 
 // ---- component inventory: recipes (from tokens.css) + visual assets -------------
 const COMPONENTS = [
@@ -50,7 +50,7 @@ const COMPONENTS = [
   { name: "mark", test: (t) => /mark[-/]/.test(t) || /\bmark\b/.test(t) },
   { name: "lockup", test: (t) => /lockup/.test(t) },
   { name: "avatar", test: (t) => /avatar/.test(t) },
-  { name: "card (surface)", test: (t) => /\b(bs-card|\.card\b|class="[^"]*\bcard\b)/.test(t) },
+  { name: "card (surface)", test: (t) => /\b(bnd-card|\.card\b|class="[^"]*\bcard\b)/.test(t) },
 ];
 
 // ---- scan helpers --------------------------------------------------------------
@@ -74,7 +74,7 @@ async function filesUnder(dir) {
 
 const HEX = /(?<!&)#[0-9a-fA-F]{3,8}\b/g; // (?<!&) skips HTML entities like &#8599;
 const PX = /(?<![\w-])\d+(?:\.\d+)?px\b/g;
-const VAR = /var\(\s*(--bs-[a-z0-9-]+)\s*\)/g;
+const VAR = /var\(\s*(--bnd-[a-z0-9-]+)\s*\)/g;
 
 function stripVarValues(line) {
   // don't count the var(--x) name itself as a raw value; and HTML meta attribute
@@ -166,11 +166,11 @@ if (JSON_OUT) {
 
   console.log("\n  3. COMPONENT COVERAGE MATRIX");
   const allComp = COMPONENTS.map((c) => c.name);
-  const head = allComp.map((c) => c.replace("bs-text-", "")).join(" ");
+  const head = allComp.map((c) => c.replace("bnd-text-", "")).join(" ");
   console.log(`     surface          ${head}`);
   for (const r of results) {
     const row = allComp.map((c) => (r.components.includes(c) ? "✓" : "·"));
-    console.log(`     ${basename(r.dir).padEnd(16)} ${row.map((x, i) => x.padEnd(allComp[i].replace("bs-text-", "").length)).join(" ")}`);
+    console.log(`     ${basename(r.dir).padEnd(16)} ${row.map((x, i) => x.padEnd(allComp[i].replace("bnd-text-", "").length)).join(" ")}`);
   }
 
   if (hybrid) {

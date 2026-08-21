@@ -59,7 +59,7 @@ Wire the check into the pipeline so the CSS can never drift from the JSON:
 
 The **slug / eyebrow** ("AVATAR SYSTEM · v1") is the `text.label` style — *not*
 a single token, but a composite that references `font.mono`, `size.text-label`,
-etc. Consume it as the `.bs-text-label` class or read its parts from JSON.
+etc. Consume it as the `.bnd-text-label` class or read its parts from JSON.
 
 ## Consuming
 
@@ -67,8 +67,8 @@ etc. Consume it as the `.bs-text-label` class or read its parts from JSON.
 
 ```css
 @import "brand/tokens/tokens.css";
-.eyebrow { } /* or just add class="bs-text-label" */
-h1        { color: var(--bs-color-ink); }
+.eyebrow { } /* or just add class="bnd-text-label" */
+h1        { color: var(--bnd-color-ink); }
 ```
 
 **Anything that can't read CSS** (native iOS/Android, email, Figma, print) reads
@@ -80,7 +80,7 @@ npm run build:sd   # → dist/{tokens.scss,tokens.js,tokens.flat.json,Tokens.swi
 ```
 
 `tokens.css` stays the curated **web** artifact (it carries the composite
-`.bs-text-*` classes); Style Dictionary covers everything else. `dist/` is
+`.bnd-text-*` classes); Style Dictionary covers everything else. `dist/` is
 gitignored — it's generated, never committed. JSON is the source; every CSS,
 SCSS, JS, Swift, and XML file is a derived artifact.
 
@@ -142,7 +142,7 @@ Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 Status colors for graded claims (*Enforced* · *Partial* · *Aspirational*). Only
 the **base** is authored in `tokens.json`; `build-tokens.mjs` derives the `-bg`
 (light surface), `-fg` (readable text), and `-on-dark` ramps deterministically,
-so consumers get the full set as `--bs-grade-*` variables.
+so consumers get the full set as `--bnd-grade-*` variables.
 
 | Token | Hex | Use |
 | --- | --- | --- |

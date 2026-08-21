@@ -34,9 +34,13 @@ const resolveRef = (s) => {
 
 function genCss(t) {
   // Collect every token as { name (clean, no prefix), value, syntax }. The clean name
-  // is canonical; a legacy --bs-<name> alias (the historical Bootstrap-flavoured prefix)
-  // is emitted alongside during the migration so existing consumers + the conformance
-  // gates keep resolving. `syntax` drives the @property type registration.
+  // is canonical; a legacy --bnd-<name> alias is emitted alongside during the migration
+  // so existing consumers + the conformance gates keep resolving. The alias prefix was
+  // `--bs-` until 2.0.0, which is Bootstrap 5's OWN custom-property namespace
+  // (--bs-primary, --bs-body-bg) — squatting on it risked real collisions and misread
+  // as Bootstrap to anyone (human or agent) reading a var() call. Renaming the prefix
+  // does not change where this layer is going: off, onto the clean names above.
+  // `syntax` drives the @property type registration.
   const TOK = [];
   const add = (name, value, syntax) => TOK.push({ name, value, syntax });
 
@@ -79,8 +83,10 @@ function genCss(t) {
   L.push("    /* baobab tokens — clean semantic names, no defensive prefix (the @layer is the namespace) */");
   for (const { name, value } of TOK) L.push(`    --${name}: ${value};`);
   L.push("");
-  L.push("    /* legacy --bs-* aliases — transition only; migrate consumers off these, then drop */");
-  for (const { name, value } of TOK) L.push(`    --bs-${name}: ${value};`);
+  L.push("    /* Legacy --bnd-* aliases — transition only; migrate consumers off these, then drop.");
+  L.push("       Renamed from the Bootstrap-flavoured prefix in 2.0.0 (it collided with Bootstrap 5's");
+  L.push("       own custom-property namespace). The destination is unchanged: the clean names above. */");
+  for (const { name, value } of TOK) L.push(`    --bnd-${name}: ${value};`);
   L.push("  }");
   L.push("");
   L.push("  /* Text styles — composite recipes built from the tokens above. */");
@@ -92,7 +98,7 @@ function genCss(t) {
     if (v.lineHeight != null) decls.push(`    line-height: ${v.lineHeight};`);
     if (v.letterSpacing != null) decls.push(`    letter-spacing: ${v.letterSpacing};`);
     if (v.textTransform) decls.push(`    text-transform: ${v.textTransform};`);
-    L.push(`  .text-${k}, .bs-text-${k} {`); // clean + legacy class
+    L.push(`  .text-${k}, .bnd-text-${k} {`); // clean + legacy class
     L.push(...decls);
     L.push("  }");
   }

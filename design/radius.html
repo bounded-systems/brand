@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="./preview.css">
 </head>
 <body>
-  <header class="bs-head">
+  <header class="bnd-head">
     <p class="eyebrow">Foundations</p>
-    <h1 class="bs-text-h2">Radius</h1>
-    <p>Corner radii, read live from the <code>--bs-radius-*</code> custom properties.</p>
+    <h1 class="bnd-text-h2">Radius</h1>
+    <p>Corner radii, read live from the <code>--bnd-radius-*</code> custom properties.</p>
   </header>
   <div class="grid" id="grid"></div>
   <p class="note" id="note" hidden>Could not read tokens.css rules (serve over http to enable).</p>
@@ -31,8 +31,8 @@
             var st = rules[i].style;
             for (var j = 0; j < st.length; j++) {
               var p = st[j];
-              if (p.indexOf("--bs-radius-") === 0) {
-                out.push({ name: p.replace("--bs-", ""), value: st.getPropertyValue(p).trim() });
+              if (p.indexOf("--bnd-radius-") === 0) {
+                out.push({ name: p.replace("--bnd-", ""), value: st.getPropertyValue(p).trim() });
               }
             }
           }
@@ -49,7 +49,7 @@
         var cell = document.createElement("div");
         cell.className = "cell";
         cell.innerHTML =
-          '<div class="chip" style="background:var(--bs-color-forest);border-top-left-radius:' +
+          '<div class="chip" style="background:var(--bnd-color-forest);border-top-left-radius:' +
           t.value + ";border-top-right-radius:" + t.value + '"></div>' +
           '<div class="meta"><div class="name">' + t.name + '</div>' +
           '<div class="val">' + t.value + "</div></div>";

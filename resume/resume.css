@@ -20,7 +20,7 @@
   --r-measure: 78ch;
 }
 
-html { background: var(--bs-color-paper); }
+html { background: var(--bnd-color-paper); }
 
 body {
   /* base.css already sets paper bg, ink colour, display font, smoothing */
@@ -31,16 +31,16 @@ body {
 .resume {
   max-width: 760px;
   margin: 0 auto;
-  background: var(--bs-color-card);
-  border: var(--r-rule) solid var(--bs-color-line);
-  border-radius: var(--bs-radius-lg);
+  background: var(--bnd-color-card);
+  border: var(--r-rule) solid var(--bnd-color-line);
+  border-radius: var(--bnd-radius-lg);
   overflow: hidden;
 }
 
 /* ── header ────────────────────────────────────────────────────────────── */
 .r-head {
-  background: var(--bs-color-forest);
-  color: var(--bs-color-white);
+  background: var(--bnd-color-forest);
+  color: var(--bnd-color-white);
   padding: var(--r-page-pad);
 }
 .r-id {
@@ -50,31 +50,31 @@ body {
 }
 .r-mark { width: 34px; height: 34px; flex: none; display: block; }
 .r-name {
-  font-family: var(--bs-font-display);
-  font-size: var(--bs-text-h1);
+  font-family: var(--bnd-font-display);
+  font-size: var(--bnd-text-h1);
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.025em;
   margin: 0;
-  color: var(--bs-color-white);
+  color: var(--bnd-color-white);
 }
 .r-role {
-  font-family: var(--bs-font-mono);
-  font-size: var(--bs-text-label);
+  font-family: var(--bnd-font-mono);
+  font-size: var(--bnd-text-label);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bs-grade-enforced-on-dark);
+  color: var(--bnd-grade-enforced-on-dark);
   margin: 16px 0 0;
 }
 .r-tagline {
-  font-family: var(--bs-font-display);
-  font-size: var(--bs-text-title);
+  font-family: var(--bnd-font-display);
+  font-size: var(--bnd-text-title);
   font-weight: 400;
   line-height: 1.4;
   margin: 10px 0 0;
   max-width: 52ch;
-  color: var(--bs-color-white);
+  color: var(--bnd-color-white);
 }
 
 /* contact / affiliations row */
@@ -86,9 +86,9 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 6px 0;
-  font-family: var(--bs-font-mono);
+  font-family: var(--bnd-font-mono);
   font-size: 12px;
-  color: var(--bs-grade-enforced-on-dark);
+  color: var(--bnd-grade-enforced-on-dark);
 }
 .r-contact li { display: inline-flex; align-items: center; }
 .r-contact li:not(:last-child)::after {
@@ -98,26 +98,26 @@ body {
      used to composite the on-dark mint token down to 2.95:1 — below AA. The
      opacity-contrast gate (Token Accessibility suite) flags exactly that
      effective-contrast drop. */
-  color: var(--bs-grade-enforced-on-dark);
+  color: var(--bnd-grade-enforced-on-dark);
 }
 .r-contact a {
-  color: var(--bs-color-white);
+  color: var(--bnd-color-white);
   text-decoration: none;
   /* Translucent-white underline raised 40%→60% so the EFFECTIVE (composited)
      contrast on forest clears the 3:1 non-text floor (WCAG 1.4.11): white@.40
      composited to 2.66:1 (fail) → white@.60 ≈ 4.06:1 (pass). */
-  border-bottom: 1px solid color-mix(in srgb, var(--bs-color-white) 60%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--bnd-color-white) 60%, transparent);
 }
-.r-contact a:hover { border-bottom-color: var(--bs-color-white); }
+.r-contact a:hover { border-bottom-color: var(--bnd-color-white); }
 
 /* ── body ──────────────────────────────────────────────────────────────── */
 .r-body { padding: var(--r-page-pad); }
 
 .r-summary { margin: 0 0 var(--r-gap-section); }
 .r-summary p {
-  font-size: var(--bs-text-body);
+  font-size: var(--bnd-text-body);
   line-height: 1.6;
-  color: var(--bs-color-ink);
+  color: var(--bnd-color-ink);
   margin: 0 0 12px;
   max-width: var(--r-measure);
 }
@@ -127,26 +127,26 @@ body {
 .r-section:last-child { margin-bottom: 0; }
 
 .r-section-label {
-  font-family: var(--bs-font-mono);
-  font-size: var(--bs-text-label);
+  font-family: var(--bnd-font-mono);
+  font-size: var(--bnd-text-label);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bs-color-ink-mono);
+  color: var(--bnd-color-ink-mono);
   margin: 0 0 14px;
   padding: 0 0 8px;
-  border-bottom: var(--r-rule) solid var(--bs-color-line);
+  border-bottom: var(--r-rule) solid var(--bnd-color-line);
 }
 
 /* skills — inline run of mono chips of text */
 .r-skills {
   margin: 0;
-  font-size: var(--bs-text-body);
+  font-size: var(--bnd-text-body);
   line-height: 1.9;
-  color: var(--bs-color-ink-soft);
+  color: var(--bnd-color-ink-soft);
 }
 .r-skills b {
-  color: var(--bs-color-ink);
+  color: var(--bnd-color-ink);
   font-weight: 500;
 }
 
@@ -160,24 +160,24 @@ body {
   gap: 16px;
 }
 .r-org {
-  font-family: var(--bs-font-display);
-  font-size: var(--bs-text-title);
+  font-family: var(--bnd-font-display);
+  font-size: var(--bnd-text-title);
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--bs-color-ink);
+  color: var(--bnd-color-ink);
   margin: 0;
 }
 .r-dates {
-  font-family: var(--bs-font-mono);
+  font-family: var(--bnd-font-mono);
   font-size: 12px;
-  color: var(--bs-color-ink-mono);
+  color: var(--bnd-color-ink-mono);
   white-space: nowrap;
   flex: none;
 }
 .r-meta {
-  font-family: var(--bs-font-mono);
+  font-family: var(--bnd-font-mono);
   font-size: 12px;
-  color: var(--bs-color-ink-soft);
+  color: var(--bnd-color-ink-soft);
   margin: 3px 0 0;
 }
 .r-bullets {
@@ -189,9 +189,9 @@ body {
   position: relative;
   padding-left: 18px;
   margin: 0 0 var(--r-gap-bullet);
-  font-size: var(--bs-text-body);
+  font-size: var(--bnd-text-body);
   line-height: 1.55;
-  color: var(--bs-color-ink);
+  color: var(--bnd-color-ink);
   max-width: var(--r-measure);
 }
 .r-bullets li:last-child { margin-bottom: 0; }
@@ -203,18 +203,18 @@ body {
   width: 5px;
   height: 5px;
   border-radius: 1.5px;
-  background: var(--bs-color-forest);
+  background: var(--bnd-color-forest);
 }
 
 /* footer slug */
 .r-foot {
   margin: var(--r-gap-section) 0 0;
   padding: 16px 0 0;
-  border-top: var(--r-rule) solid var(--bs-color-line);
-  font-family: var(--bs-font-mono);
+  border-top: var(--r-rule) solid var(--bnd-color-line);
+  font-family: var(--bnd-font-mono);
   font-size: 11px;
   letter-spacing: 0.04em;
-  color: var(--bs-color-ink-mono);
+  color: var(--bnd-color-ink-mono);
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -227,7 +227,7 @@ body {
   body { padding: 0; }
   .resume { border: none; border-radius: 0; }
   :root { --r-page-pad: 28px; }
-  .r-name { font-size: var(--bs-text-h2); }
+  .r-name { font-size: var(--bnd-text-h2); }
   .r-entry-head { flex-direction: column; gap: 2px; }
 }
 
@@ -244,7 +244,7 @@ body {
   /* force background/accent colours to render in the PDF */
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-  html, body { background: var(--bs-color-card); }
+  html, body { background: var(--bnd-color-card); }
   body { padding: 0; }
 
   .resume {
