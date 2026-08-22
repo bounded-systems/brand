@@ -10,7 +10,19 @@ name: publish
 on:
   push:
     tags: ["v*"]
+  # A tag publishes to both registries, but the two can succeed independently —
+  # v2.0.0 went out on npm and was refused by JSR, leaving the release half-done
+  # with no way to finish it: re-running the tag's workflow re-runs the OLD file,
+  # and a plain dispatch would retry npm for a version already published (a
+  # guaranteed failure that says nothing). `registry` makes each half separately
+  # recoverable without burning a version number.
   workflow_dispatch:
+    inputs:
+      registry:
+        description: "Which registry to publish to. Use `jsr` (or `npm`) to finish a release where only one half landed."
+        type: choice
+        options: [both, npm, jsr]
+        default: both
 
 permissions:
   contents: read
@@ -40,6 +52,9 @@ jobs:
 
   npm:
     needs: verify
+    # Skipped only when a dispatch explicitly asks for JSR alone; every tag push
+    # still publishes both.
+    if: github.event_name != 'workflow_dispatch' || inputs.registry != 'jsr'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -59,6 +74,7 @@ jobs:
 
   jsr:
     needs: verify
+    if: github.event_name != 'workflow_dispatch' || inputs.registry != 'npm'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -73,4 +89,15 @@ jobs:
       - run: npm ci
       - run: npm run build:ts
       - name: Publish to JSR (keyless OIDC)
-        run: deno publish
+        # `npx jsr publish`, not `deno publish`. The package IS linked to this
+        # repo on JSR and OIDC needs no secret, yet `deno publish` was refused
+        # with `actorNotScopeMember` — i.e. it authenticated as an actor JSR does
+        # not accept for the scope. The permission is not the gap: the npm job
+        # above authenticates by OIDC from the same inherited `id-token: write`
+        # and succeeds. `npx jsr publish` is the path JSR's own "publish from CI"
+        # docs give, so use it rather than keep guessing at deno's auth.
+        #
+        # The jsr CLI runs the same slow-type check deno publish did, so nothing
+        # is given up. setup-deno above is now only needed if this is reverted —
+        # drop it once a green JSR publish confirms this path.
+        run: npx jsr publish
