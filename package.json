@@ -1,15 +1,31 @@
 {
   "name": "@bounded-systems/brand",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Design system for Bounded Systems — tokens/CSS (MIT) plus brand identity artwork (proprietary, all rights reserved, see LICENSE).",
   "type": "module",
   "license": "MIT",
   "homepage": "https://bounded.tools",
-  "repository": { "type": "git", "url": "git+https://github.com/bounded-systems/brand.git" },
-  "bugs": { "url": "https://github.com/bounded-systems/brand/issues" },
-  "keywords": ["design-tokens", "brand", "css", "fonts", "bounded-systems"],
-  "engines": { "node": ">=18" },
-  "publishConfig": { "access": "public", "provenance": true },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bounded-systems/brand.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bounded-systems/brand/issues"
+  },
+  "keywords": [
+    "design-tokens",
+    "brand",
+    "css",
+    "fonts",
+    "bounded-systems"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "files": [
     "css/",
     "tokens/tokens.css",
