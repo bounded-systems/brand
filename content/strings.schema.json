@@ -2,29 +2,50 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://bounded.tools/schema/content-strings.json",
   "title": "Bounded Systems content tokens",
-  "description": "The contract for canonical brand copy. Each token is a DTCG-style { $value, $description }. Mirrors tokens.json for the verbal layer.",
+  "description": "The contract for canonical brand copy and surface microcopy. Each token is a DTCG-style { $value, $description }, both non-empty. Tokens nest in DTCG groups: a surface's microcopy lives under its own namespace group (approve, clax, allie), flattened by consumers to dotted keys. Placeholders in a $value are {name}, filled by the surface. Mirrors tokens.json for the verbal layer.",
   "type": "object",
   "required": ["name", "tagline", "description"],
   "properties": {
     "$description": { "type": "string" }
   },
   "patternProperties": {
-    "^[a-z][a-z0-9-]*$": {
+    "^[a-z][a-z0-9_-]*$": { "$ref": "#/definitions/node" }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "node": {
+      "oneOf": [{ "$ref": "#/definitions/token" }, { "$ref": "#/definitions/group" }]
+    },
+    "token": {
       "type": "object",
-      "required": ["$value"],
+      "required": ["$value", "$description"],
       "additionalProperties": false,
       "properties": {
         "$value": {
           "type": "string",
           "minLength": 1,
-          "description": "The canonical copy string presented on every surface."
+          "pattern": "^([^{}]|\\{[a-z][a-z0-9_]*\\})*$",
+          "description": "The canonical copy string presented on every surface. A {name} is a placeholder the surface fills; any other brace is an error."
         },
         "$description": {
           "type": "string",
-          "description": "Where/how this string is used."
+          "minLength": 1,
+          "pattern": "\\S",
+          "description": "Where/how this string is used, and what each placeholder stands for."
         }
       }
+    },
+    "group": {
+      "type": "object",
+      "not": { "required": ["$value"] },
+      "properties": {
+        "$description": { "type": "string" }
+      },
+      "patternProperties": {
+        "^[a-z][a-z0-9_-]*$": { "$ref": "#/definitions/node" }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
     }
-  },
-  "additionalProperties": false
+  }
 }

@@ -116,6 +116,32 @@ drift from the spec.
 
 Fonts: [Space Grotesk] + [IBM Plex Mono] (Google Fonts).
 
+## Content: brand copy and surface microcopy
+
+`content/strings.json` is the verbal layer, the way `tokens.json` is the visual
+one: every token is `{ "$value", "$description" }`, both non-empty
+(`content/strings.schema.json`). The top level holds the brand's own copy
+(`name`, `tagline`, ...). Each surface that renders words keeps its microcopy
+in its own DTCG group, so every surface reads one file:
+
+| group | surface |
+| --- | --- |
+| `approve` | the passkey approve page (`bdelanghe/chitin`, `crates/chitin-approve`) |
+| `clax`, `allie` | reserved for the fleet's published pages and Allie |
+
+A consumer flattens a group to dotted keys (`approve.pending.title`). A
+`{name}` in a `$value` is a placeholder the surface fills, and escapes; it is
+never a DTCG alias (names carry no dots), and any other brace fails the check.
+
+`node tools/content.mjs --check` validates the whole tree (keys, groups,
+placeholders) and runs in CI (`coverage.yml`) and in `nix flake check`. The
+flake package ships `content/` for consumers that pin it.
+
+A compiled consumer (chitin's `include_str!`) vendors the file next to its code
+and records this repo's commit and the file's sha256. Its own test compares
+the vendored bytes against that pin, so a copy change lands here first and
+reaches the surface as a reviewed pin bump.
+
 ## Palette
 
 | Token | Hex | Use |

@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Content tokens — schema-driven, Gherkin-asserted, tag-scoped, multi-repo. Zero deps.
 //
-//   1. Validate   content/strings.json against content/strings.schema.json
+//   1. Validate   content/strings.json against content/strings.schema.json (tokens, DTCG
+//                 groups such as a surface's `approve` namespace, {name} placeholders)
 //   2. Merge      core (this repo) + per-repo content/strings.json  (multi-repo catalog)
 //   3. Spec link  content/*.feature quoted strings must exist in the catalog
 //   4. Coverage   each surface must satisfy the scenarios that apply to IT
@@ -37,16 +38,33 @@ const flatten = (obj, prefix = "") => {
 // ---- 1. schema-driven validation (driven by the schema file) -------------------
 const schema = JSON.parse(await readFile(join(brandRoot, "content", "strings.schema.json"), "utf8"));
 const keyRe = new RegExp(Object.keys(schema.patternProperties)[0]);
-function validate(json, where) {
+const tokenProps = schema.definitions.token.properties;
+const valueRe = new RegExp(tokenProps.$value.pattern);
+const descRe = new RegExp(tokenProps.$description.pattern);
+// A node is a token (has $value) or a DTCG group of nodes (a surface namespace such as
+// `approve`, or a sub-group within it). Errors name the flattened dotted key.
+function validate(json, where, prefix = "") {
   const errs = [];
   // `required` tokens are enforced on the MERGED catalog (see below), not per-file — so a
   // per-repo surface only ADDS keys; it needn't restate the canonical core tokens.
   for (const [k, v] of Object.entries(json)) {
     if (k.startsWith("$")) continue;
-    if (!keyRe.test(k)) errs.push(`${where}: key '${k}' doesn't match ${keyRe}`);
-    if (!v || typeof v !== "object" || typeof v.$value !== "string" || !v.$value.length)
-      errs.push(`${where}: token '${k}' must have a non-empty string $value`);
-    else for (const f of Object.keys(v)) if (!["$value", "$description"].includes(f)) errs.push(`${where}: token '${k}' unknown field '${f}'`);
+    const key = prefix ? `${prefix}.${k}` : k;
+    if (!keyRe.test(k)) errs.push(`${where}: key '${key}' doesn't match ${keyRe}`);
+    if (!v || typeof v !== "object") { errs.push(`${where}: '${key}' must be a token or a group`); continue; }
+    if (!("$value" in v)) {
+      if (!Object.keys(v).some((f) => !f.startsWith("$"))) errs.push(`${where}: group '${key}' is empty`);
+      for (const f of Object.keys(v)) if (f.startsWith("$") && f !== "$description") errs.push(`${where}: group '${key}' unknown field '${f}'`);
+      errs.push(...validate(v, where, key));
+      continue;
+    }
+    if (typeof v.$value !== "string" || !v.$value.length)
+      errs.push(`${where}: token '${key}' must have a non-empty string $value`);
+    else if (!valueRe.test(v.$value))
+      errs.push(`${where}: token '${key}' has a malformed placeholder (only {name}, name matching [a-z][a-z0-9_]*): ${JSON.stringify(v.$value)}`);
+    if (typeof v.$description !== "string" || !descRe.test(v.$description))
+      errs.push(`${where}: token '${key}' must have a non-empty $description`);
+    for (const f of Object.keys(v)) if (!["$value", "$description"].includes(f)) errs.push(`${where}: token '${key}' unknown field '${f}'`);
   }
   return errs;
 }
