@@ -183,6 +183,10 @@
         "$value": "The passkey prompt was cancelled or timed out.",
         "$description": "Page script: the reason shown when the WebAuthn prompt is dismissed or times out (NotAllowedError)."
       },
+      "already_has_passkey": {
+        "$value": "This device already has your passkey (synced through iCloud Keychain). You can approve from here now; no new passkey is needed.",
+        "$description": "Page script: the reason shown when registering on a device that already holds one of the registered passkeys (WebAuthn InvalidStateError), e.g. an iPad that got the iPhone's passkey through iCloud Keychain."
+      },
       "changed": {
         "$value": "this message changed since the page loaded. Reload and read it again.",
         "$description": "Page script: the reason shown when the challenge's recipient or text differs from what the page shows; nothing is signed."
