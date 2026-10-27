@@ -23,6 +23,9 @@
         buildPhase = ''
           runHook preBuild
           node tokens/build-tokens.mjs --check
+          # The verbal layer: content/strings.json (brand copy + each surface's
+          # microcopy group) against its schema, placeholders well-formed.
+          node tools/content.mjs --check
           runHook postBuild
         '';
 
@@ -30,6 +33,8 @@
           runHook preInstall
           mkdir -p $out
           cp -r css tokens/tokens.css tokens/tokens.json mark avatar lockup favicon-32.png README.md $out/
+          mkdir -p $out/content
+          cp content/strings.json content/strings.schema.json $out/content/
           runHook postInstall
         '';
       };
@@ -43,7 +48,7 @@
         brand = default;
       });
 
-      # `nix flake check` runs the token drift gate.
+      # `nix flake check` runs the token drift gate and the content (strings) gate.
       checks = forAll (pkgs: { tokens = mkBrand pkgs; });
 
       devShells = forAll (pkgs: {
