@@ -11,7 +11,7 @@
       # The web payload: the curated, ready-to-link surface. Mirrors package.json
       # "files" — assets + the generated tokens.css. (dist/ Style-Dictionary
       # outputs and tools/ are intentionally excluded; this is the web artifact.)
-      brand = pkgs: pkgs.stdenvNoCC.mkDerivation {
+      mkBrand = pkgs: pkgs.stdenvNoCC.mkDerivation {
         pname = "bounded-systems-brand";
         version = "1.1.0";
         src = ./.;
@@ -39,12 +39,12 @@
       # `${inputs.brand.packages.${system}.default}` into their served tree —
       # one pin, the built artifact, still hermetic.
       packages = forAll (pkgs: rec {
-        default = brand pkgs;
+        default = mkBrand pkgs;
         brand = default;
       });
 
       # `nix flake check` runs the token drift gate.
-      checks = forAll (pkgs: { tokens = brand pkgs; });
+      checks = forAll (pkgs: { tokens = mkBrand pkgs; });
 
       devShells = forAll (pkgs: {
         default = pkgs.mkShell { packages = [ pkgs.nodejs_22 ]; };
