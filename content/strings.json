@@ -84,8 +84,8 @@
         "$description": "Heading of one pending intent; the approve button is described by it. {to} is the recipient (HTML-escaped)."
       },
       "meta": {
-        "$value": "Queued {age} ago by {by} (unverified), {chars} characters, #{hash}, id {id}",
-        "$description": "Metadata line under an intent's heading. {age} is a time.* phrase, {by} the unverified queuer, {chars} the length, {hash} the text hash, {id} the intent id."
+        "$value": "Queued {age} ago by {by}, {chars} characters, #{hash}, id {id}",
+        "$description": "Metadata line under an intent's heading. {age} is a time.* phrase, {by} the queuer with chitin's verdict on its signature (chitin's queuer.line without its 'queued by ' prefix, e.g. 'work-x (seat, key 1ee5c2d9, origin seat)' or 'work-x (unverified: no signature)'), {chars} the length, {hash} the text hash, {id} the intent id."
       },
       "queued_by_unknown": {
         "$value": "unknown",
